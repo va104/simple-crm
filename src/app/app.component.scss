@@ -7,7 +7,7 @@
 }
 
 .logo-container {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     padding: 16px;
     min-height: 32px;
     height: 32px;
@@ -32,7 +32,11 @@ ul {
         }
 
         &:hover {
-            background-color: rgba(0, 0, 0, 0.1);
+            background-color: rgba(0, 0, 0, 0.08);
         }
     }
+}
+
+.router-container {
+    padding: 16px 0 0 56px;
 }
