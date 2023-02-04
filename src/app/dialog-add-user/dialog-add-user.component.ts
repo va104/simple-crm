@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { User } from 'src/models/user.class';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -11,7 +12,11 @@ export class DialogAddUserComponent implements OnInit {
   user = new User();
   birthDate: Date; 
   
-  constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>) { }
+  constructor(
+    public dialogRef: MatDialogRef<DialogAddUserComponent>,
+    private firestore: AngularFirestore,) { 
+
+    }
 
   ngOnInit(): void {
   }
@@ -22,7 +27,14 @@ export class DialogAddUserComponent implements OnInit {
 
   saveUser() {
     this.user.birthDate = this.birthDate.getTime();
-    console.log(this.user)
+    console.log(this.user);
+
+    this.firestore
+      .collection('users')
+      .add(this.user.toJSON())
+      .then((result: any) => {
+        console.log('Von Firestore: ', result)
+      })
   }
 }
 
