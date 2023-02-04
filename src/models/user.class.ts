@@ -14,4 +14,18 @@ export class User {
         this.zipCode = obj ? obj.zipCode : '';
         this.city = obj ? obj.city : '';
     }
+
+  /**
+   * Converts the customer object into JSON for saving on firebase
+   */
+    toJSON() {
+        return {
+            firstName: this.firstName,
+            lastName: this.lastName,
+            birthDate: this.birthDate,
+            street: this.street,
+            zipCode: this.zipCode,
+            city: this.city,
+        }
+    }
 }
