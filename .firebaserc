@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "default": "crm-system-6afdc",
+    "crm-system": "crm-system-6afdc"
+  },
+  "targets": {
+    "crm-system-6afdc": {
+      "hosting": {
+        "simple-crm": [
+          "crm-system-6afdc"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
