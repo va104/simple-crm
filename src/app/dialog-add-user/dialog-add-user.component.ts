@@ -11,6 +11,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class DialogAddUserComponent implements OnInit {
   user = new User();
   birthDate: Date; 
+  showProgressBar = false;
   
   constructor(
     public dialogRef: MatDialogRef<DialogAddUserComponent>,
@@ -26,14 +27,19 @@ export class DialogAddUserComponent implements OnInit {
   }
 
   saveUser() {
+    this.showProgressBar = !this.showProgressBar
     this.user.birthDate = this.birthDate.getTime();
-    console.log(this.user);
 
     this.firestore
       .collection('users')
       .add(this.user.toJSON())
       .then((result: any) => {
-        console.log('Von Firestore: ', result)
+
+        //for user experience
+        setTimeout(() => {
+          this.showProgressBar = !this.showProgressBar;
+          this.dialogRef.close();
+        }, 1000);
       })
   }
 }
