@@ -22,10 +22,6 @@ export class DialogAddUserComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
   saveUser() {
     this.showProgressBar = !this.showProgressBar
     this.user.birthDate = this.birthDate.getTime();
@@ -34,12 +30,8 @@ export class DialogAddUserComponent implements OnInit {
       .collection('users')
       .add(this.user.toJSON())
       .then((result: any) => {
-
-        //for user experience
-        setTimeout(() => {
-          this.showProgressBar = !this.showProgressBar;
-          this.dialogRef.close();
-        }, 1000);
+        this.showProgressBar = !this.showProgressBar;
+        this.dialogRef.close();
       })
   }
 }
