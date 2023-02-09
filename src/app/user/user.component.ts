@@ -11,7 +11,7 @@ import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.compo
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  allUsers: User[];
+  allUsers;
 
   constructor(
     public dialog: MatDialog,
