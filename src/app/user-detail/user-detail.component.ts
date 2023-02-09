@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { user } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -41,11 +40,14 @@ export class UserDetailComponent implements OnInit {
   editUser() {
     const dialog = this.dialog.open(DialogEditUserComponent);
     // get access to the variables of the component
-    dialog.componentInstance.user = this.user;
+    // and fill the variable with a copy of the current user
+    dialog.componentInstance.user = new User(this.user);
+    dialog.componentInstance.userId = this.userId;
   }
-
+  
   editAddress() {
     const dialog = this.dialog.open(DialogEditAddressComponent);
-    dialog.componentInstance.user = this.user;
+    dialog.componentInstance.user = new User(this.user);
+    dialog.componentInstance.userId = this.userId;
   }
 }
