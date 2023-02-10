@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
-import { User } from 'src/models/user.class';
+import { Employee } from 'src/models/employee.class';
 
 @Component({
   selector: 'app-dialog-edit-address',
@@ -9,8 +9,8 @@ import { User } from 'src/models/user.class';
   styleUrls: ['./dialog-edit-address.component.scss']
 })
 export class DialogEditAddressComponent implements OnInit {
-  user: User = new User();
-  userId: string;
+  employee: Employee = new Employee();
+  employeeId: string;
   showProgressBar = false;
 
   constructor(
@@ -20,13 +20,13 @@ export class DialogEditAddressComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  saveUser() {
+  saveEmployee() {
     this.showProgressBar = !this.showProgressBar;
     this
     .firestore
-    .collection('users')
-    .doc(this.userId)
-    .update(this.user.toJSON())
+    .collection('employees')
+    .doc(this.employeeId)
+    .update(this.employee.toJSON())
     .then(() => {
         this.showProgressBar = !this.showProgressBar;
         this.dialogRef.close()

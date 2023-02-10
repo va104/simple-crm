@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { User } from 'src/models/user.class';
+import { Employee } from 'src/models/employee.class';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
-  selector: 'app-dialog-add-user',
-  templateUrl: './dialog-add-user.component.html',
-  styleUrls: ['./dialog-add-user.component.scss']
+  selector: 'app-dialog-add-employee',
+  templateUrl: './dialog-add-employee.component.html',
+  styleUrls: ['./dialog-add-employee.component.scss']
 })
-export class DialogAddUserComponent implements OnInit {
-  user = new User();
+export class DialogAddEmployeeComponent implements OnInit {
+  employee = new Employee();
   birthDate: Date; 
   showProgressBar = false;
   
   constructor(
-    public dialogRef: MatDialogRef<DialogAddUserComponent>,
+    public dialogRef: MatDialogRef<DialogAddEmployeeComponent>,
     private firestore: AngularFirestore,) { 
 
     }
@@ -22,13 +22,13 @@ export class DialogAddUserComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  saveUser() {
+  saveEmployee() {
     this.showProgressBar = !this.showProgressBar
-    this.user.birthDate = this.birthDate.getTime();
+    this.employee.birthDate = this.birthDate.getTime();
 
     this.firestore
-      .collection('users')
-      .add(this.user.toJSON())
+      .collection('employees')
+      .add(this.employee.toJSON())
       .then((result: any) => {
         this.showProgressBar = !this.showProgressBar;
         this.dialogRef.close();

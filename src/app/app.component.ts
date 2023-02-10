@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { User } from 'src/models/user.class';
+import { Employee } from 'src/models/employee.class';
 import { map } from 'rxjs';
 
 @Component({
@@ -24,13 +24,12 @@ export class AppComponent implements OnInit {
             array.push({ ...data[key], index: key })
           }
         }
-        console.log(array)
         return array
           ;
       }))
       .subscribe(data => {
         for (const dataElement of data) {
-          const user = new User({
+          const employee = new Employee({
             firstName: dataElement.first_name,
             lastName: dataElement.last_name,
             email: dataElement.email,
@@ -41,8 +40,8 @@ export class AppComponent implements OnInit {
           });
 
           // this.firestore
-          //   .collection('users')
-          //   .add(user.toJSON())
+          //   .collection('employees')
+          //   .add(employee.toJSON())
           //   .then((result: any) => {
           //   })
         }

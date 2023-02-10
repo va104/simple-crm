@@ -1,14 +1,14 @@
-<mat-card class="user-detail-header">
-    <button [matMenuTriggerFor]="userMenu" mat-icon-button class="pin-right-upper-corner">
+<mat-card class="employee-detail-header">
+    <button [matMenuTriggerFor]="employeeMenu" mat-icon-button class="pin-right-upper-corner">
         <mat-icon>more_vert</mat-icon>
     </button>
-    <mat-menu #userMenu="matMenu">
-        <button mat-menu-item (click)="editUser()">Edit</button>
+    <mat-menu #employeeMenu="matMenu">
+        <button mat-menu-item (click)="editEmployee()">Edit</button>
       </mat-menu>
     <img src="./assets/img/serious-woman.svg" alt="">
-    <div class="user-details">
-       <h2>{{ user.firstName }} {{ user.lastName }}</h2><br>
-       {{ user.email }}
+    <div class="employee-details">
+       <h2>{{ employee.firstName }} {{ employee.lastName }}</h2><br>
+       {{ employee.email }}
     </div>
 </mat-card>
 
@@ -21,7 +21,7 @@
       </mat-menu>
     <mat-card-title>Address</mat-card-title>
     <mat-card-content>
-        {{ user.street }} <br>
-        {{ user.zipCode }} {{ user.city }}
+        {{ employee.street }} <br>
+        {{ employee.zipCode }} {{ employee.city }}
     </mat-card-content>
 </mat-card>

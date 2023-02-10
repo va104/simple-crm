@@ -1,33 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
-import { User } from 'src/models/user.class';
+import { Employee } from 'src/models/employee.class';
 
 @Component({
-  selector: 'app-dialog-edit-user',
-  templateUrl: './dialog-edit-user.component.html',
-  styleUrls: ['./dialog-edit-user.component.scss']
+  selector: 'app-dialog-edit-employee',
+  templateUrl: './dialog-edit-employee.component.html',
+  styleUrls: ['./dialog-edit-employee.component.scss']
 })
-export class DialogEditUserComponent implements OnInit {
-  user: User = new User();
-  userId: string;
+export class DialogEditEmployeeComponent implements OnInit {
+  employee: Employee = new Employee();
+  employeeId: string;
   showProgressBar = false;
   birthDate: Date;
 
   constructor(
-    public dialogRef: MatDialogRef<DialogEditUserComponent>,
+    public dialogRef: MatDialogRef<DialogEditEmployeeComponent>,
     private firestore: AngularFirestore,) { }
 
   ngOnInit(): void {
   }
 
-  saveUser() {
+  saveEmployee() {
     this.showProgressBar = !this.showProgressBar;
     this
     .firestore
-    .collection('users')
-    .doc(this.userId)
-    .update(this.user.toJSON())
+    .collection('employees')
+    .doc(this.employeeId)
+    .update(this.employee.toJSON())
     .then(() => {
         this.showProgressBar = !this.showProgressBar;
         this.dialogRef.close()
