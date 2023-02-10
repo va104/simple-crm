@@ -15,8 +15,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   // if a observable is returned, subscribe is needed
-    this.http.get('https://random-data-api.com/api/v2/users?size=20&response_type=json')
+    // if a observable is returned, subscribe is needed
+    this.http.get('https://random-data-api.com/api/v2/users?size=5&response_type=json')
       .pipe(map(data => {
         const array = [];
         for (const key in data) {
@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
             array.push({ ...data[key], index: key })
           }
         }
+        // console.log(array)
         return array
           ;
       }))
@@ -34,10 +35,20 @@ export class AppComponent implements OnInit {
             lastName: dataElement.last_name,
             email: dataElement.email,
             birthDate: dataElement.date_of_birth,
-            street: dataElement.address.street_address,
-            zipCode: dataElement.address.zip_code,
-            city: dataElement.address.city,
-          });
+            phoneNumber: dataElement.phone_number,
+            avatar: dataElement.avatar,
+            address: {
+              country: dataElement.address.country,
+              city: dataElement.address.city,
+              state: dataElement.address.state,
+              street: dataElement.address.street_address,
+              zipCode: dataElement.address.zip_code,
+            },
+            employment: {
+              keySkill: dataElement.employment.key_skill,
+              title: dataElement.employment.title,
+            }
+          })
 
           // this.firestore
           //   .collection('employees')

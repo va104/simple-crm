@@ -13,7 +13,7 @@ import { DialogEditEmployeeComponent } from '../dialog-edit-employee/dialog-edit
 })
 export class EmployeeDetailComponent implements OnInit {
   employeeId: string;
-  employee: Employee = new Employee();
+  employee = new Employee();
 
   constructor(
     private route: ActivatedRoute,

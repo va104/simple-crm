@@ -8,7 +8,7 @@
     <tr *ngFor="let employee of pageSlice" [routerLink]="['/employee/' + employee.employeeId]">
       <td>{{ employee.firstName }} {{ employee.lastName }}</td>
       <td>{{ employee.email }}</td>
-      <td>{{ employee.city }}</td>
+      <td>{{ employee.address.city }}</td>
     </tr>
   </table>
   <mat-paginator [showFirstLastButtons]="true" [length]="allEmployees.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" (page)="onPageChange($event)" aria-label="Select page">

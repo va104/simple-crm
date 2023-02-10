@@ -5,17 +5,17 @@
         <div>
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Street + House No.</mat-label>
-                <input [disabled]="showProgressBar" [(ngModel)]="employee.street" matInput placeholder="Street + House No.">
+                <input [disabled]="showProgressBar" [(ngModel)]="employee.address.street" matInput placeholder="Street + House No.">
             </mat-form-field>
         </div>
         <div>
             <mat-form-field appearance="outline" class="mr-16">
                 <mat-label>Zip code</mat-label>
-                <input [disabled]="showProgressBar" [(ngModel)]="employee.zipCode" matInput placeholder="Zip code">
+                <input [disabled]="showProgressBar" [(ngModel)]="employee.address.zipCode" matInput placeholder="Zip code">
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>City</mat-label>
-                <input [disabled]="showProgressBar" [(ngModel)]="employee.city" matInput placeholder="City">
+                <input [disabled]="showProgressBar" [(ngModel)]="employee.address.city" matInput placeholder="City">
             </mat-form-field>
         </div>
 

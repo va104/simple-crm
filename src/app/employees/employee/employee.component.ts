@@ -23,9 +23,9 @@ export class EmployeeComponent implements OnInit {
       .valueChanges({ idField: 'employeeId' })
       .subscribe((changes: any) => {
         this.allEmployees = changes;
-        console.log(this.allEmployees)
         // show the first 10 elements
-        this.pageSlice = this.allEmployees.slice(0, 10)
+        this.allEmployees.sort(this.sortArray);
+        this.pageSlice = this.allEmployees.slice(0, 10);
       }); 
   }
 
@@ -42,4 +42,15 @@ export class EmployeeComponent implements OnInit {
     }
     this.pageSlice = this.allEmployees.slice(startIndex, endIndex)
   }
+
+  sortArray( a, b ) {
+    if ( a.lastName < b.lastName ){
+      return -1;
+    }
+    if ( a.lastName > b.lastName ){
+      return 1;
+    }
+    return 0;
+  }
+  
 }

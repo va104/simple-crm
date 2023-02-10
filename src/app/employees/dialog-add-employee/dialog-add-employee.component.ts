@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Employee } from 'src/models/employee.class';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Employee } from 'src/models/employee.class';
 
 @Component({
   selector: 'app-dialog-add-employee',
@@ -20,11 +20,12 @@ export class DialogAddEmployeeComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    console.log(this.employee)
   }
 
   saveEmployee() {
     this.showProgressBar = !this.showProgressBar
-    this.employee.birthDate = this.birthDate.getTime();
+    // this.employee.birthDate = this.birthDate.getTime();
 
     this.firestore
       .collection('employees')
