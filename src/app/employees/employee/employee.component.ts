@@ -1,56 +1,48 @@
-import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
-import { PageEvent } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { DialogAddEmployeeComponent } from '../dialog-add-employee/dialog-add-employee.component';
+import { Component, ViewChild, OnInit } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { Employee } from 'src/models/employee.class';
+
 
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.scss']
 })
-export class EmployeeComponent implements OnInit {
-  allEmployees = [];
-  pageSlice = [];
 
+export class EmployeeComponent implements OnInit {
+  allEmployees: any;
+  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'address.city'];
+  
+  @ViewChild('sort') sort: MatSort;
+  @ViewChild('page') paginator: MatPaginator;
+  
   constructor(
     public dialog: MatDialog,
     private firestore: AngularFirestore) { }
 
-  ngOnInit(): void {
-    this.firestore
+    ngOnInit(): void {
+      this.firestore
       .collection('employees')
       .valueChanges({ idField: 'employeeId' })
       .subscribe((changes: any) => {
-        this.allEmployees = changes;
-        // show the first 10 elements
-        this.allEmployees.sort(this.sortArray);
-        this.pageSlice = this.allEmployees.slice(0, 10);
-      }); 
+        this.allEmployees = new MatTableDataSource<Employee>(changes);
+        this.allEmployees.paginator = this.paginator;
+        this.allEmployees.sortingDataAccessor = (item, city) => {
+          switch(city) {
+            case 'address.city': return item.address.city;
+            default: return item[city];
+          }
+        };
+        this.allEmployees.sort = this.sort;
+      });
   }
 
   openDialog(): void {
     this.dialog.open(DialogAddEmployeeComponent);
   }
-
-  onPageChange(event: PageEvent) {
-    console.log(event);
-    const startIndex = event.pageSize * event.pageIndex;
-    let endIndex = startIndex + event.pageSize;
-    if (endIndex > this.allEmployees.length) {
-      endIndex = this.allEmployees.length
-    }
-    this.pageSlice = this.allEmployees.slice(startIndex, endIndex)
-  }
-
-  sortArray( a, b ) {
-    if ( a.lastName < b.lastName ){
-      return -1;
-    }
-    if ( a.lastName > b.lastName ){
-      return 1;
-    }
-    return 0;
-  }
-  
 }

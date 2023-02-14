@@ -32,6 +32,8 @@ import { DialogEditAddressComponent } from './employees/dialog-edit-address/dial
 import { DialogEditEmployeeComponent } from './employees/dialog-edit-employee/dialog-edit-employee.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @NgModule({
@@ -65,6 +67,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatMenuModule,
     MatPaginatorModule,
     HttpClientModule,
+    MatTableModule,
+    MatSortModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
