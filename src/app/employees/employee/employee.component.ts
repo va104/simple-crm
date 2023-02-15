@@ -39,8 +39,8 @@ export class EmployeeComponent implements OnInit {
         this.setDropdownMenuProperties();
         this.filterForNestedObjects();
       });
-  }
-
+    }
+    
   openDialog(): void {
     this.dialog.open(DialogAddEmployeeComponent);
   }
