@@ -1,49 +1,51 @@
 .add-employee-button {
     position: fixed;
-    right: 56px;
-    bottom: 56px;
+    right: 100px;
+    margin: 0;
+    z-index: 10;
 }
 
 table {
     width: 100%;
-    border-collapse: collapse;
+}
 
-    tr {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-        cursor: pointer;
+.filter-section {
+    display: flex;
+    justify-content: space-between;
+}
 
-        &:last-child {
-            border-bottom: 0;
-        }
+img {
+    height: 48px;
+    width: 50px;
+    margin: 6px 12px 6px 0;
+    object-fit: cover;
+    border-radius: 100%;
+    border: 1px solid #00000038
+}
 
-        &:first-child {
-            cursor: unset;
+:host {
+    ::ng-deep {
+        .mat-table tbody tr {
+            cursor: pointer !important;
 
             &:hover {
-                background-color: unset;
+                background-color: rgba(0, 0, 0, 0.04);
+            }
+            
+            td.mat-cell:first-of-type {
+                display: flex;
+                align-items: center;
             }
         }
 
-        td {
-            height: 48px;
-
-            &:first-child {
-                padding-left: 16px;
-            }
+        .mat-table thead {
+            top: 0;
+            position: sticky;
+            background-color: white !important;
         }
 
-        &:hover {
-            background-color: rgba(0, 0, 0, 0.04);
-        }
-    }
-
-    th {
-        color: rgba(0, 0, 0, 0.4);
-        font-weight: 400;
-        text-align: start;
-
-        &:first-child {
-            padding-left: 16px;
+        .mat-form-field-appearance-fill .mat-form-field-flex {
+            margin-top: 32px;
         }
     }
 }
@@ -53,10 +55,11 @@ mat-card {
     padding-right: 0;
 }
 
-table {
-    width: 100%;
-  }
-  
-  button {
+mat-form-field {
+    font-size: 14px;
+    // width: 100%;
+}
+
+button {
     margin: 0 8px 8px 0;
-  }
+}

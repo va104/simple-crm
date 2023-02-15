@@ -15,6 +15,7 @@ export class Employee {
     employment: {
         keySkill: string,
         title: string,
+        department: string,
     }
 
     constructor(obj?: any) {
@@ -40,9 +41,11 @@ export class Employee {
       this.employment = obj ? {
         keySkill: obj.employment.keySkill,      
         title: obj.employment.title,      
+        department: obj.employment.department,      
       } : {
         keySkill: '',      
-        title: '',      
+        title: '',   
+        department: '',   
       }
 }
 
@@ -66,7 +69,8 @@ export class Employee {
       },
       employment: {
         keySkill: this.employment.keySkill,
-        title: this.employment.title
+        title: this.employment.title,
+        department: this.employment.department
       }
     }
   }

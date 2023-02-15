@@ -4,19 +4,21 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Employee } from 'src/models/employee.class';
 import { map } from 'rxjs';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  allDepartments: string[] = ['Sales', 'Accounting', 'Customer Service', 'Marketing', 'Engineering', 'Development', 'Legal']
   constructor(private http: HttpClient, private firestore: AngularFirestore) {
 
   }
 
   ngOnInit(): void {
     // if a observable is returned, subscribe is needed
-    this.http.get('https://random-data-api.com/api/v2/users?size=5&response_type=json')
+    this.http.get('https://random-data-api.com/api/v2/users?size=100&response_type=json')
       .pipe(map(data => {
         const array = [];
         for (const key in data) {
@@ -47,6 +49,7 @@ export class AppComponent implements OnInit {
             employment: {
               keySkill: dataElement.employment.key_skill,
               title: dataElement.employment.title,
+              department: this.assignRandomDepartment()
             }
           })
 
@@ -57,5 +60,10 @@ export class AppComponent implements OnInit {
           //   })
         }
       })
+  }
+
+  assignRandomDepartment() {
+    const number = Math.floor(Math.random() * (6 - 0 + 1) + 0);
+    return this.allDepartments[number];
   }
 }

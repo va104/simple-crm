@@ -1,21 +1,53 @@
-<div class="mat-elevation-z8"> 
+<button class="add-employee-button" mat-raised-button color="primary" (click)="openDialog()">
+  <mat-icon>add_circle_outline</mat-icon>
+  Add Employee
+</button>
+<h1>Employees</h1>
+<div class="filter-section">
+    <mat-form-field appearance="fill">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Search your employee" #input>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Department</mat-label>
+      <mat-select (selectionChange)="furtherFilter($event)" [disableOptionCentering]="true">
+        <mat-option [value]="'all'">All Departments</mat-option>
+        <mat-option *ngFor="let dep of allDepartments" [value]="dep">
+          {{dep}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+</div>
+
+<div class="mat-elevation-z8">
   <table mat-table [dataSource]="allEmployees" matSort matSortActive="firstName" matSortDirection="asc" #sort="matSort">
-    
-    <ng-container matColumnDef="firstName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header="firstName"> First Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
-    </ng-container>
+
     <ng-container matColumnDef="lastName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+      <img src="" alt="">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="lastName"> EMPLOYEE </th>
+      <td mat-cell *matCellDef="let element" [routerLink]="['/employee/' + element.employeeId]"> 
+        <img [src]="element.avatar" alt="">
+        {{element.firstName}}
+        {{element.lastName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="employment.title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> TITLE </th>
+      <td mat-cell *matCellDef="let element" [routerLink]="['/employee/' + element.employeeId]">
+        {{element.employment.title}} </td>
+    </ng-container>
+    <ng-container matColumnDef="employment.department">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> DEPARTMENT </th>
+      <td mat-cell *matCellDef="let element" [routerLink]="['/employee/' + element.employeeId]">
+        {{element.employment.department}} </td>
+    </ng-container>
+    <ng-container matColumnDef="employment.keySkill">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> KEY SKILL </th>
+      <td mat-cell *matCellDef="let element" [routerLink]="['/employee/' + element.employeeId]">
+        {{element.employment.keySkill}} </td>
     </ng-container>
     <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> E-Mail </th>
-      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-    </ng-container>
-    <ng-container matColumnDef="address.city">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> City </th>
-      <td mat-cell *matCellDef="let element"> {{element.address.city}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> E-MAIL </th>
+      <td mat-cell *matCellDef="let element" [routerLink]="['/employee/' + element.employeeId]"> {{element.email}} </td>
     </ng-container>
 
     <!-- Custom row definitions to be provided to the wrapper table. -->
@@ -24,13 +56,9 @@
 
     <!-- Row shown when there is no matching data that will be provided to the wrapper table. -->
     <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">No data</td>
+      <td class="mat-cell" colspan="6">No data</td>
     </tr>
   </table>
   <mat-paginator #page showFirstLastButtons [pageSizeOptions]="[5, 10, 25, 100]">
   </mat-paginator>
 </div>
-<button (click)="openDialog()" matTooltip="Add User" class="add-employee-button" mat-fab color="primary"
-  aria-label="Example icon button with a delete icon">
-  <mat-icon>add</mat-icon>
-</button>
