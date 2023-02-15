@@ -53,11 +53,11 @@ export class AppComponent implements OnInit {
             }
           })
 
-          // this.firestore
-          //   .collection('employees')
-          //   .add(employee.toJSON())
-          //   .then((result: any) => {
-          //   })
+          this.firestore
+            .collection('employees')
+            .add(employee.toJSON())
+            .then((result: any) => {
+            })
         }
       })
   }

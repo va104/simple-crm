@@ -18,7 +18,7 @@ import { MatSelectChange } from '@angular/material/select';
 
 export class EmployeeComponent implements OnInit {
   allEmployees: any;
-  public allDepartments: any[] = [];
+  allDepartments: any[] = [];
   displayedColumns: string[] = ['lastName', 'employment.title', 'employment.department', 'employment.keySkill', 'email'];
   
   @ViewChild('sort') sort: MatSort;
