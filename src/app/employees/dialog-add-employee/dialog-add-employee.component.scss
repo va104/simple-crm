@@ -6,7 +6,32 @@ mat-progress-bar {
     width: calc(100% + 48px);
 }
 
-::ng-deep .cdk-overlay-pane {
-    width: 80% !important;
+// ::ng-deep .cdk-overlay-pane {
+//     width: 80% !important;
+// }
+
+p {
+    font-size: 16px;
+    margin-top: 12px;
 }
 
+.user {
+    height: 70px;
+    width: 70px;
+    border-radius: 100%;
+    object-fit: cover;
+    margin-bottom: 16px;
+}
+
+.overlay-img {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    object-fit: cover;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 75px;
+  }

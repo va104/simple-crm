@@ -1,15 +1,23 @@
 <div class="pos-rel">
     <mat-progress-bar *ngIf="showProgressBar" mode="indeterminate"></mat-progress-bar>
     <h1 mat-dialog-title>Add employee</h1>
-    Avatar nicht vergessen
+    <div class="d-flex just-center pos-rel">
+        <img class="user" [src]="imgageURL" alt="User" #myImg>
+        <div>
+            <label for="upload">
+                <input (change)="addData($event)" type="file" id="upload" style="display:none">
+                <img class="overlay-img" src="../../../assets/img/upload.png" alt="Upload">
+            </label>
+        </div>
+    </div>
     <div mat-dialog-content>
         <p>Personal Information</p>
-        <div>
-            <mat-form-field class="mr-16" appearance="outline">
+        <div class="d-flex just-between">
+            <mat-form-field class="width-half" appearance="outline">
                 <mat-label>First Name</mat-label>
                 <input [disabled]="showProgressBar" [(ngModel)]="employee.firstName" matInput placeholder="First Name">
             </mat-form-field>
-            <mat-form-field appearance="outline">
+            <mat-form-field class="width-half" appearance="outline">
                 <mat-label>Last Name</mat-label>
                 <input [disabled]="showProgressBar" [(ngModel)]="employee.lastName" matInput placeholder="Last Name">
             </mat-form-field>
@@ -20,64 +28,69 @@
                 <input [disabled]="showProgressBar" [(ngModel)]="employee.email" matInput placeholder="E-Mail">
             </mat-form-field>
         </div>
-        <div>
-            <mat-form-field appearance="outline" class="full-width">
+        <div class="d-flex just-between">
+            <mat-form-field class="width-half" appearance="outline">
                 <mat-label>Phone Number</mat-label>
-                <input [disabled]="showProgressBar" [(ngModel)]="employee.phoneNumber" matInput placeholder="Phone Number">
+                <input [disabled]="showProgressBar" [(ngModel)]="employee.phoneNumber" matInput
+                    placeholder="Phone Number">
             </mat-form-field>
-        </div>
-        <div>
-            <mat-form-field appearance="outline" class="full-width">
+            <mat-form-field class="width-half" appearance="outline">
                 <mat-label>Birth Date</mat-label>
-                <input [disabled]="showProgressBar" [(ngModel)]="birthDate" matInput [matDatepicker]="picker1" placeholder="Birth Date">
+                <input [disabled]="showProgressBar" [(ngModel)]="birthDate" matInput [matDatepicker]="picker1"
+                    placeholder="Birth Date">
                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>
         </div>
-         <div>
-            <mat-form-field appearance="outline" class="full-width">
+        <p>Address</p>
+        <div class="d-flex just-between">
+            <mat-form-field class="width-half" appearance="outline">
                 <mat-label>Country</mat-label>
-                <input [disabled]="showProgressBar" [(ngModel)]="employee.address.country" matInput placeholder="Country">
+                <input [disabled]="showProgressBar" [(ngModel)]="employee.address.country" matInput
+                    placeholder="Country">
             </mat-form-field>
-        </div>
-         <div>
-            <mat-form-field appearance="outline" class="full-width">
+            <mat-form-field class="width-half" appearance="outline">
                 <mat-label>State</mat-label>
                 <input [disabled]="showProgressBar" [(ngModel)]="employee.address.state" matInput placeholder="State">
             </mat-form-field>
         </div>
-         <div>
+        <div>
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Street + No.</mat-label>
-                <input [disabled]="showProgressBar" [(ngModel)]="employee.address.street" matInput placeholder="Street + House No.">
+                <input [disabled]="showProgressBar" [(ngModel)]="employee.address.street" matInput
+                    placeholder="Street + House No.">
             </mat-form-field>
         </div>
-        <div>
-            <mat-form-field appearance="outline" class="mr-16">
+        <div class="d-flex just-between">
+            <mat-form-field class="width-half" appearance="outline">
                 <mat-label>Zip code</mat-label>
-                <input [disabled]="showProgressBar" [(ngModel)]="employee.address.zipCode" matInput placeholder="Zip code">
+                <input [disabled]="showProgressBar" [(ngModel)]="employee.address.zipCode" matInput
+                    placeholder="Zip code">
             </mat-form-field>
-            <mat-form-field appearance="outline">
+            <mat-form-field class="width-half" appearance="outline">
                 <mat-label>City</mat-label>
                 <input [disabled]="showProgressBar" [(ngModel)]="employee.address.city" matInput placeholder="City">
-            </mat-form-field> 
+            </mat-form-field>
         </div>
         <p>Employment Information</p>
         <div>
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Position Title</mat-label>
-                <input [disabled]="showProgressBar" [(ngModel)]="employee.employment.title" matInput placeholder="Position Title">
+                <input [disabled]="showProgressBar" [(ngModel)]="employee.employment.title" matInput
+                    placeholder="Position Title">
             </mat-form-field>
         </div>
-        <div>
-            <mat-form-field appearance="outline" class="mr-16">
+        <div class="d-flex just-between">
+            <mat-form-field class="width-half" appearance="outline">
                 <mat-label>Department</mat-label>
-                <input [disabled]="showProgressBar" [(ngModel)]="employee.employment.department" matInput placeholder="Department">
+                <input [disabled]="showProgressBar" [(ngModel)]="employee.employment.department" matInput
+                    placeholder="Department">
             </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>City</mat-label>
-                <input [disabled]="showProgressBar" [(ngModel)]="employee.employment.keySkill" matInput placeholder="Key Skill">
-            </mat-form-field> 
+            <mat-form-field class="width-half" appearance="outline">
+                <mat-label>Key Skill</mat-label>
+                <input [disabled]="showProgressBar" [(ngModel)]="employee.employment.keySkill" matInput
+                    placeholder="Key Skill">
+            </mat-form-field>
         </div>
     </div>
     <div mat-dialog-actions>

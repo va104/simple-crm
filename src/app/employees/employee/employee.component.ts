@@ -1,13 +1,13 @@
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import { DialogAddEmployeeComponent } from '../dialog-add-employee/dialog-add-employee.component';
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Employee } from 'src/models/employee.class';
-import { FormControl, MaxLengthValidator } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
+import * as myGlobals from 'src/app/common/globals'
 
 
 @Component({
@@ -18,7 +18,7 @@ import { MatSelectChange } from '@angular/material/select';
 
 export class EmployeeComponent implements OnInit {
   allEmployees: any;
-  allDepartments: any[] = [];
+  allDepartments: string[]= myGlobals.allDepartments;
   displayedColumns: string[] = ['lastName', 'employment.title', 'employment.department', 'employment.keySkill', 'email'];
   
   @ViewChild('sort') sort: MatSort;
@@ -36,7 +36,6 @@ export class EmployeeComponent implements OnInit {
         this.allEmployees = new MatTableDataSource<Employee>(changes);
         this.allEmployees.paginator = this.paginator;
         this.sortNestedProperties();
-        this.setDropdownMenuProperties();
         this.filterForNestedObjects();
       });
     }
@@ -69,15 +68,6 @@ export class EmployeeComponent implements OnInit {
       data.firstName.toLocaleLowerCase().includes(filter) ||
       data.lastName.toLocaleLowerCase().includes(filter)
     } 
-  }
-  
-  setDropdownMenuProperties () {
-    for (const filteredData of this.allEmployees.filteredData) {
-      const value = filteredData.employment.department
-      if (!this.allDepartments.includes(value)) {
-        this.allDepartments.push(filteredData.employment.department);
-      }
-    }
   }
 
   furtherFilter(event) {
