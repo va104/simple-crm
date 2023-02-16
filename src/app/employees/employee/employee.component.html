@@ -5,8 +5,8 @@
 <h1>Employees</h1>
 <div class="filter-section">
   <mat-form-field appearance="fill">
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Search your employee" #input>
+    <mat-label>Search User</mat-label>
+    <input matInput (keyup)="applyFilter($event)" #input>
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Department</mat-label>
@@ -58,7 +58,7 @@
 
     <!-- Row shown when there is no matching data that will be provided to the wrapper table. -->
     <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="6">No data</td>
+      <td class="mat-cell" colspan="5">No data</td>
     </tr>
   </table>
   <mat-paginator #page showFirstLastButtons [pageSizeOptions]="[5, 10, 25, 100]">

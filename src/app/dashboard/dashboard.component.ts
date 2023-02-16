@@ -23,6 +23,15 @@ export class DashboardComponent implements OnInit {
     private elementRef: ElementRef) { }
 
   ngOnInit(): void {
+    // this.firestore
+    //   .collection('employees')
+    //   .valueChanges()
+    //   .subscribe({
+    //     next: (v) => console.log(v),
+    //     error: (e) => console.error(e),
+    //     complete: () => console.log('complete')
+    //   });
+
     this.firestore
       .collection('employees')
       .valueChanges()
@@ -38,7 +47,6 @@ export class DashboardComponent implements OnInit {
 
   chartInit() {
     const htmlRef = this.elementRef.nativeElement.querySelector('#line-chart');
-    console.log(htmlRef)
     this.singleChart = this.chart.single(this.chartname, 'Employees per Department', this.labelsList, this.data, htmlRef, 'bar');
 
   }
