@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Employee } from 'src/models/employee.class';
 import { map } from 'rxjs';
+import * as myGlobals from 'src/app/common/globals'
 
 
 @Component({
@@ -11,14 +12,14 @@ import { map } from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  allDepartments: string[] = ['Sales', 'Accounting', 'Customer Service', 'Marketing', 'Engineering', 'Development', 'Legal']
+  allDepartments: string[] = myGlobals.allDepartments;
   constructor(private http: HttpClient, private firestore: AngularFirestore) {
 
   }
 
   ngOnInit(): void {
     // if a observable is returned, subscribe is needed
-    this.http.get('https://random-data-api.com/api/v2/users?size=100&response_type=json')
+    this.http.get('https://random-data-api.com/api/v2/users?size=20&response_type=json')
       .pipe(map(data => {
         const array = [];
         for (const key in data) {

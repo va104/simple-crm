@@ -5,3 +5,8 @@ mat-progress-bar {
     top: -24px;
     width: calc(100% + 48px);
 }
+
+::ng-deep .cdk-overlay-pane {
+    width: 80% !important;
+}
+

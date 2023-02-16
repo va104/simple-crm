@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Chart } from 'chart.js';
+import { getDatabase } from 'firebase/database';
 import { ChartService } from '../common/chart.service';
 
 @Component({
@@ -22,16 +23,12 @@ export class DashboardComponent implements OnInit {
     private firestore: AngularFirestore,
     private elementRef: ElementRef) { }
 
-  ngOnInit(): void {
-    // this.firestore
-    //   .collection('employees')
-    //   .valueChanges()
-    //   .subscribe({
-    //     next: (v) => console.log(v),
-    //     error: (e) => console.error(e),
-    //     complete: () => console.log('complete')
-    //   });
+  async ngOnInit(){
+    await this.getData()
+    this.chartInit();
+  }
 
+  getData() {
     this.firestore
       .collection('employees')
       .valueChanges()
@@ -41,11 +38,12 @@ export class DashboardComponent implements OnInit {
         this.setDropdownMenuProperties();
         this.labelsList = this.allDistinctDepartments;
         this.countDep();
-        this.chartInit();
+        console.log('Data')
       });
   }
 
   chartInit() {
+    console.log('Chart init')
     const htmlRef = this.elementRef.nativeElement.querySelector('#line-chart');
     this.singleChart = this.chart.single(this.chartname, 'Employees per Department', this.labelsList, this.data, htmlRef, 'bar');
 
