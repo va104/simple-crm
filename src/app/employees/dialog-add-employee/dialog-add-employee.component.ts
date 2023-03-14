@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Employee } from 'src/models/employee.class';
 import { Storage, ref, uploadBytesResumable, getDownloadURL } from '@angular/fire/storage';
+import { NgForm, NgModel } from '@angular/forms';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class DialogAddEmployeeComponent implements OnInit {
   file: any = {};
   imgageURL = '../../../assets/img/user.png';
   @ViewChild('myImg') myImg: ElementRef;
+  @ViewChild('email') email: NgModel;
 
   constructor(
     public dialogRef: MatDialogRef<DialogAddEmployeeComponent>,
@@ -75,44 +77,57 @@ export class DialogAddEmployeeComponent implements OnInit {
           console.log(this.imgageURL, downloadURL, this.myImg)
           this.imgageURL = downloadURL;
           console.log(this.imgageURL, downloadURL, this.myImg)
-          this.myImg.nativeElement.src = this.imgageURL
+          this.myImg.nativeElement.src = this.imgageURL;
+          this.employee.avatar = this.imgageURL;
           // const img = (<HTMLImageElement>document.getElementById(myImg))
         });
       }
     );
   }
 
-  getData() {
-    // Create a reference from a Google Cloud Storage URI
-    const gsReference = ref(this.storage, 'gs://crm-system-6afdc.appspot.com/profile.png');
+  test(form: NgForm) {
+    console.log('sdfjk', form)
+  }
 
+  getErrorMessage() {
+    if (this.email.hasError('required')) {
+      return 'E-Mail is required';
+    }
 
-    getDownloadURL(gsReference)
-      .then((url) => {
-        // Insert url into an <img> tag to "download"
-        console.log(url);
-        this.imgageURL = url;
-      })
-      .catch((error) => {
-        // A full list of error codes is available at
-        // https://firebase.google.com/docs/storage/web/handle-errors
-        switch (error.code) {
-          case 'storage/object-not-found':
-            // File doesn't exist
-            break;
-          case 'storage/unauthorized':
-            // User doesn't have permission to access the object
-            break;
-          case 'storage/canceled':
-            // User canceled the upload
-            break;
-
-          // ...
-
-          case 'storage/unknown':
-            // Unknown error occurred, inspect the server response
-            break;
-        }
-      });
+    return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 }
+//   getData() {
+//     // Create a reference from a Google Cloud Storage URI
+//     const gsReference = ref(this.storage, 'gs://crm-system-6afdc.appspot.com/profile.png');
+
+
+//     getDownloadURL(gsReference)
+//       .then((url) => {
+//         // Insert url into an <img> tag to "download"
+//         console.log(url);
+//         this.imgageURL = url;
+//       })
+//       .catch((error) => {
+//         // A full list of error codes is available at
+//         // https://firebase.google.com/docs/storage/web/handle-errors
+//         switch (error.code) {
+//           case 'storage/object-not-found':
+//             // File doesn't exist
+//             break;
+//           case 'storage/unauthorized':
+//             // User doesn't have permission to access the object
+//             break;
+//           case 'storage/canceled':
+//             // User canceled the upload
+//             break;
+
+//           // ...
+
+//           case 'storage/unknown':
+//             // Unknown error occurred, inspect the server response
+//             break;
+//         }
+//       });
+//   }
+// 
