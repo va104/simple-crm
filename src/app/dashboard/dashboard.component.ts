@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Chart } from 'chart.js';
-import { ChartService } from '../common/chart.service';
+import { ChartService } from '../services/chart.service';
 import * as myGlobals from 'src/app/common/globals'
 
 @Component({

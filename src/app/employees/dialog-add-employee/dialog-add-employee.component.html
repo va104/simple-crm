@@ -1,8 +1,8 @@
 <div class="pos-rel">
     <mat-progress-bar *ngIf="showProgressBar" mode="indeterminate"></mat-progress-bar>
     <h1 mat-dialog-title>Add employee</h1>
-    <form (ngSubmit)="test(f)" #f="ngForm">
-        <div class="d-flex just-center pos-rel">
+    <form (ngSubmit)="test(f)" #f="ngForm" ngNativeValidate>
+        <div class="d-flex just-center pos-rel mb-20">
             <img class="user" [src]="imgageURL" alt="User" #myImg>
             <div>
                 <label for="upload">
@@ -40,8 +40,8 @@
                 <mat-form-field class="width-half" appearance="outline">
                     <mat-label>Phone Number</mat-label>
                     <input [disabled]="showProgressBar" #phoneNumber="ngModel" [(ngModel)]="employee.phoneNumber" matInput
-                        placeholder="Phone Number" name="phoneNumber" pattern="[a-zA-Z ]*" minlength="4" required>
-                    <mat-error *ngIf="phoneNumber.errors?.['minlength']">Pattern not allowed</mat-error>
+                        placeholder="Phone Number" name="phoneNumber" type="text" pattern="[- +()0-9]+">
+                    <!-- <mat-error *ngIf="phoneNumber.errors?.['minlength']">Pattern not allowed</mat-error> -->
                 </mat-form-field>
                 <mat-form-field class="width-half" appearance="outline">
                     <mat-label>Birth Date</mat-label>
