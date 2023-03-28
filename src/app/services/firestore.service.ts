@@ -17,10 +17,14 @@ export class FirestoreService {
 
   /**
  * CRUD => CREATE
- * Saves the customer in the Firestore as JSON
- * 1. Converts the date into a unix timestamp
- * 2. Converts the customer object into JSON
+ * Saves the employees in the Firestore as JSON
+ * 2. Converts the employees object into JSON
  */
+createEmployee(employee: Employee) {
+  this.firestore
+    .collection('employees')
+    .add(employee.toJSON())
+}
 
   /**
 * CRUD => READ
@@ -35,13 +39,13 @@ export class FirestoreService {
 
   /**
 * CRUD => UPDATE
-* Updates the passed customer in the Firestore
+* Updates the passed employees in the Firestore
 * @param customerId The unique document id from firestore
 */
 
   /**
 * CRUD => DELETE
-* Deletes a customer from the Firestore
+* Deletes a employees from the Firestore
 * @param customerId The unique document id from firestore
 */
 }

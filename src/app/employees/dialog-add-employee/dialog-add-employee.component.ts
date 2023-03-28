@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Employee } from 'src/models/employee.class';
 import { Storage, ref, uploadBytesResumable, getDownloadURL } from '@angular/fire/storage';
 import { NgForm, NgModel } from '@angular/forms';
+import { FirestoreService } from 'src/app/services/firestore.service';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class DialogAddEmployeeComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<DialogAddEmployeeComponent>,
     private firestore: AngularFirestore,
+    private firestoreService: FirestoreService,
     public storage: Storage) {
   }
 
@@ -30,17 +32,18 @@ export class DialogAddEmployeeComponent implements OnInit {
     console.log(this.employee)
   }
 
+  /**
+   * saves the employee in the employees-collection
+   * simulate progress bar for better user experience
+   */
   saveEmployee() {
     this.showProgressBar = !this.showProgressBar
     // this.employee.birthDate = this.birthDate.getTime();
-
-    this.firestore
-      .collection('employees')
-      .add(this.employee.toJSON())
-      .then((result: any) => {
+    this.firestoreService.createEmployee(this.employee)
+    setTimeout(() => {
         this.showProgressBar = !this.showProgressBar;
-        this.dialogRef.close();
-      })
+        this.dialogRef.close(); 
+      }, 1000);
   }
 
   chooseFile() {
@@ -83,10 +86,6 @@ export class DialogAddEmployeeComponent implements OnInit {
         });
       }
     );
-  }
-
-  test(form: NgForm) {
-    console.log('sdfjk', form)
   }
 
   getErrorMessage() {
