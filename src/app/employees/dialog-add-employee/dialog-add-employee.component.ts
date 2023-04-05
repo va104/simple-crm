@@ -56,8 +56,11 @@ export class DialogAddEmployeeComponent implements OnInit {
       urlPromise.then((downloadURL: string) => {
           this.myImg.nativeElement.src = downloadURL;
           this.employee.avatar = downloadURL;
+      }).catch(err => {
+        console.log(err);
       })
     })
+
   }
 
   getErrorMessage() {

@@ -8,7 +8,7 @@ export class FirestorageService {
 
   constructor(private storage: Storage) { }
 
-  saveImageFirestorage(file, fn) {
+  saveImageFirestorage(file, callback) {
     const storageRef = ref(this.storage, file.name);
     const uploadTask = uploadBytesResumable(storageRef, file);
     
@@ -19,7 +19,8 @@ export class FirestorageService {
       () => {
         // Handle successful uploads on complete
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-        fn(getDownloadURL(uploadTask.snapshot.ref)) 
+       return getDownloadURL(uploadTask.snapshot.ref)
+        // callback(getDownloadURL(uploadTask.snapshot.ref)) 
       }
     );
   }
