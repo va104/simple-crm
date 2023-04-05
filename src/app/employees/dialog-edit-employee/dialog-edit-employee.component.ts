@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
+import { FirestoreService } from 'src/app/services/firestore.service';
 import { Employee } from 'src/models/employee.class';
 
 @Component({
@@ -9,26 +9,22 @@ import { Employee } from 'src/models/employee.class';
   styleUrls: ['./dialog-edit-employee.component.scss']
 })
 export class DialogEditEmployeeComponent implements OnInit {
-  employee: Employee = new Employee();
+  employee: Employee
   employeeId: string;
   showProgressBar = false;
   birthDate: Date;
 
   constructor(
     public dialogRef: MatDialogRef<DialogEditEmployeeComponent>,
-    private firestore: AngularFirestore,) { }
+    private firestoreService: FirestoreService) { }
 
   ngOnInit(): void {
   }
 
   saveEmployee() {
     this.showProgressBar = !this.showProgressBar;
-    this
-    .firestore
-    .collection('employees')
-    .doc(this.employeeId)
-    .update(this.employee.toJSON())
-    .then(() => {
+    this.firestoreService.updateSingleUser(this.employeeId, this.employee)
+      .then(() => {
         this.showProgressBar = !this.showProgressBar;
         this.dialogRef.close()
       })

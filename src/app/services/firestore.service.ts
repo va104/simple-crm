@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Employee } from '../../models/employee.class'
 
 @Injectable({
@@ -8,20 +8,23 @@ import { Employee } from '../../models/employee.class'
 
 export class FirestoreService {
 
+  employeesRef: AngularFirestoreCollection
+
   constructor(
     private firestore: AngularFirestore
-  ) { }
+  ) { 
+    this.employeesRef = firestore.collection('employees')
+  }
 
   /**
  * CRUD => CREATE
  * Saves the employees in the Firestore as JSON
  * 2. Converts the employees object into JSON
+ * @param employee Information of the employee
  */
-createEmployee(employee: Employee) {
- return this.firestore
-    .collection('employees')
-    .add(employee.toJSON())
-}
+  createEmployee(employee: Employee) {
+    return this.employeesRef.add(employee.toJSON())
+  }
 
   /**
 * CRUD => READ
@@ -29,9 +32,20 @@ createEmployee(employee: Employee) {
 * 2. ValueChanges() returns an Observable of document data + new ID field
 */
   getAllEmployees() {
-    return this.firestore
-      .collection('employees')
+    return this.employeesRef
       .valueChanges({ idField: 'employeeId' })
+  }
+
+  /**
+* CRUD => READ
+* 1. Get a single employee of the employees collection
+* 2. EmployeeID is needed for the corresponding record
+* @param employeeId The unique id of the employee
+*/
+  getSingleEmployee(employeeId: string) {
+    return this.employeesRef
+      .doc(employeeId)
+      .valueChanges()
   }
 
   /**
@@ -39,7 +53,12 @@ createEmployee(employee: Employee) {
 * Updates the passed employees in the Firestore
 * @param customerId The unique document id from firestore
 */
-
+  updateSingleUser(employeeId: string, employee: Employee) {
+    return this.employeesRef
+      .doc(employeeId)
+      .update(employee.toJSON())
+  }
+  
   /**
 * CRUD => DELETE
 * Deletes a employees from the Firestore

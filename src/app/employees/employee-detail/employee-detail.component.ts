@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { FirestoreService } from 'src/app/services/firestore.service';
 import { Employee } from 'src/models/employee.class';
 import { DialogEditAddressComponent } from '../dialog-edit-address/dialog-edit-address.component';
 import { DialogEditEmployeeComponent } from '../dialog-edit-employee/dialog-edit-employee.component';
@@ -18,6 +19,7 @@ export class EmployeeDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private firestore: AngularFirestore,
+    private firestoreService: FirestoreService,
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -29,10 +31,7 @@ export class EmployeeDetailComponent implements OnInit {
   
   getEmployee() {
     if(this.employeeId) {
-      this.firestore
-      .collection('employees')
-      .doc(this.employeeId)
-      .valueChanges()
+      this.firestoreService.getSingleEmployee(this.employeeId)
       .subscribe((singleUser: any) => {
         this.employee = singleUser
       })
