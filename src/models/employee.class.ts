@@ -24,7 +24,7 @@ export class Employee {
       this.email = obj ? obj.email : '';
       this.birthDate = obj ? obj.birthDate : '';
       this.phoneNumber = obj ? obj.phoneNumber : '';
-      this.avatar = obj ? obj.avatar : '';
+      this.avatar = obj ? obj.avatar : '../../../assets/img/user.png';
       this.address = obj ? {
         country: obj.address.country,      
         city: obj.address.city,     

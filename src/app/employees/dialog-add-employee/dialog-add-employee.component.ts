@@ -1,9 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { MatDialogRef } from '@angular/material/dialog'
 import { Employee } from 'src/models/employee.class';
 import { Storage, ref, uploadBytesResumable, getDownloadURL } from '@angular/fire/storage';
-import { NgForm, NgModel } from '@angular/forms';
+import { NgModel } from '@angular/forms';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
 
@@ -23,7 +22,6 @@ export class DialogAddEmployeeComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<DialogAddEmployeeComponent>,
-    private firestore: AngularFirestore,
     private firestoreService: FirestoreService,
     public storage: Storage) {
   }
@@ -37,20 +35,20 @@ export class DialogAddEmployeeComponent implements OnInit {
    * simulate progress bar for better user experience
    */
   saveEmployee() {
+    console.log(this.employee)
     this.showProgressBar = !this.showProgressBar
     // this.employee.birthDate = this.birthDate.getTime();
-    this.firestoreService.createEmployee(this.employee)
-    setTimeout(() => {
-        this.showProgressBar = !this.showProgressBar;
-        this.dialogRef.close(); 
-      }, 1000);
+    this.firestoreService.createEmployee(this.employee).then(() => {
+      this.showProgressBar = !this.showProgressBar;
+      this.dialogRef.close(); 
+    })
   }
 
   chooseFile() {
     console.log(this.file)
   }
 
-  addData(event: any) {
+  addImage(event: any) {
     this.file = event.target.files[0];
     const storageRef = ref(this.storage, this.file.name);
     const uploadTask = uploadBytesResumable(storageRef, this.file);
@@ -77,11 +75,9 @@ export class DialogAddEmployeeComponent implements OnInit {
         // Handle successful uploads on complete
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          console.log(this.imgageURL, downloadURL, this.myImg)
-          this.imgageURL = downloadURL;
-          console.log(this.imgageURL, downloadURL, this.myImg)
-          this.myImg.nativeElement.src = this.imgageURL;
-          this.employee.avatar = this.imgageURL;
+          // this.imgageURL = downloadURL;
+          this.myImg.nativeElement.src = downloadURL;
+          this.employee.avatar = downloadURL;
           // const img = (<HTMLImageElement>document.getElementById(myImg))
         });
       }

@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     // if a observable is returned, subscribe is needed
-    this.http.get('https://random-data-api.com/api/v2/users?size=20&response_type=json')
+    this.http.get('https://random-data-api.com/api/v2/users?size=10&response_type=json')
       .pipe(map(data => {
         const array = [];
         for (const key in data) {

@@ -37,10 +37,8 @@ export class EmployeeComponent implements OnInit {
    * assigns each change to the variable allEmployees
    */
   updateTableData() {
-    this.firestoreService.getAllEmployees();
-
-    this.firestoreService.allCustomers.subscribe((data) => {
-      this.allEmployees = new MatTableDataSource<Employee[]>(data);
+    this.firestoreService.getAllEmployees().subscribe((data) => {
+      this.allEmployees = new MatTableDataSource(data);
       this.allEmployees.paginator = this.paginator;
       this.sortNestedProperties();
       this.filterForNestedObjects();

@@ -18,7 +18,7 @@ export class EmployeeDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private firestore: AngularFirestore,
-    public dialog: MatDialog,) { }
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -26,7 +26,7 @@ export class EmployeeDetailComponent implements OnInit {
       this.getEmployee();
     })
   }
-
+  
   getEmployee() {
     if(this.employeeId) {
       this.firestore
