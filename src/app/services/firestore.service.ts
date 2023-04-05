@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { map, Observable } from 'rxjs';
 import { Employee } from '../../models/employee.class'
 
 @Injectable({
@@ -8,8 +7,6 @@ import { Employee } from '../../models/employee.class'
 })
 
 export class FirestoreService {
-
-  allCustomers: Observable<any>;
 
   constructor(
     private firestore: AngularFirestore
@@ -21,7 +18,7 @@ export class FirestoreService {
  * 2. Converts the employees object into JSON
  */
 createEmployee(employee: Employee) {
-  this.firestore
+ return this.firestore
     .collection('employees')
     .add(employee.toJSON())
 }
@@ -32,7 +29,7 @@ createEmployee(employee: Employee) {
 * 2. ValueChanges() returns an Observable of document data + new ID field
 */
   getAllEmployees() {
-    this.allCustomers = this.firestore
+    return this.firestore
       .collection('employees')
       .valueChanges({ idField: 'employeeId' })
   }
