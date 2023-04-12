@@ -1,14 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthenticationComponent } from './authentication/authentication.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmployeeDetailComponent } from './employees/employee-detail/employee-detail.component';
 import { EmployeeComponent } from './employees/employee/employee.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  {path: '', component: DashboardComponent},
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
+  {path: 'login', component: AuthenticationComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'employee', component: EmployeeComponent},
   {path: 'employee/:employeeId', component: EmployeeDetailComponent},
+  {path: 'not-found', component: PageNotFoundComponent},
+  {path: '**', redirectTo: 'not-found'},
 ];
 
 @NgModule({

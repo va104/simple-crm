@@ -38,6 +38,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DialogDeleteEmployeeComponent } from './employees/dialog-delete-employee/dialog-delete-employee.component';
+import { AuthenticationComponent } from './authentication/authentication.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -49,7 +51,9 @@ import { DialogDeleteEmployeeComponent } from './employees/dialog-delete-employe
     EmployeeDetailComponent,
     DialogEditAddressComponent,
     DialogEditEmployeeComponent,
-    DialogDeleteEmployeeComponent
+    DialogDeleteEmployeeComponent,
+    AuthenticationComponent,
+    PageNotFoundComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
