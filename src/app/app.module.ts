@@ -40,6 +40,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DialogDeleteEmployeeComponent } from './employees/dialog-delete-employee/dialog-delete-employee.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { SimpleCRMComponent } from './simple-crm/simple-crm.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     DialogEditEmployeeComponent,
     DialogDeleteEmployeeComponent,
     AuthenticationComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SimpleCRMComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
