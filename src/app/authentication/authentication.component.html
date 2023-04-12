@@ -1,1 +1,16 @@
-<p>authentication works!</p>
+<form *ngIf="!isLoading" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+    <label for="email">E-Mail</label>
+    <input type="text" id="email" ngModel name="email" required email>
+    <hr>
+    <label for="password">Password</label>
+    <input type="password" id="password" ngModel name="password" required minlength="6">
+    <hr>
+    <button type="submit" [disabled]="!authForm.valid">{{isLoginMode ? 'Login' : 'Sign Up'}}</button>
+    <hr>
+    <button type="button" (click)="onSwitchMode()">{{isLoginMode ? 'Switch to Signup' : 'Switch to Login'}}</button>
+</form>
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
+<div *ngIf="error">
+    <p>{{error}}</p>
+</div>

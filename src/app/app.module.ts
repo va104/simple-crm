@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -41,6 +40,7 @@ import { DialogDeleteEmployeeComponent } from './employees/dialog-delete-employe
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SimpleCRMComponent } from './simple-crm/simple-crm.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 
 @NgModule({
@@ -55,7 +55,8 @@ import { SimpleCRMComponent } from './simple-crm/simple-crm.component';
     DialogDeleteEmployeeComponent,
     AuthenticationComponent,
     PageNotFoundComponent,
-    SimpleCRMComponent
+    SimpleCRMComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
