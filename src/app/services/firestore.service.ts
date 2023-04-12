@@ -51,9 +51,9 @@ export class FirestoreService {
   /**
 * CRUD => UPDATE
 * Updates the passed employees in the Firestore
-* @param customerId The unique document id from firestore
+* @param employeeId The unique document id from firestore
 */
-  updateSingleUser(employeeId: string, employee: Employee) {
+  updateSingleEmployee(employeeId: string, employee: Employee) {
     return this.employeesRef
       .doc(employeeId)
       .update(employee.toJSON())
@@ -62,6 +62,11 @@ export class FirestoreService {
   /**
 * CRUD => DELETE
 * Deletes a employees from the Firestore
-* @param customerId The unique document id from firestore
+* @param employeeId The unique document id from firestore
 */
+  deleteSingleEmployee(employeeId: string) {
+    return this.employeesRef
+      .doc(employeeId)
+      .delete()
+  }
 }

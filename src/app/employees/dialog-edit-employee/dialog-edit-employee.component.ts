@@ -23,7 +23,7 @@ export class DialogEditEmployeeComponent implements OnInit {
 
   saveEmployee() {
     this.showProgressBar = !this.showProgressBar;
-    this.firestoreService.updateSingleUser(this.employeeId, this.employee)
+    this.firestoreService.updateSingleEmployee(this.employeeId, this.employee)
       .then(() => {
         this.showProgressBar = !this.showProgressBar;
         this.dialogRef.close()

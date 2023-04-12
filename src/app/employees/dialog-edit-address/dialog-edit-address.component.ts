@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
+import { FirestoreService } from 'src/app/services/firestore.service';
 import { Employee } from 'src/models/employee.class';
 
 @Component({
@@ -15,19 +15,18 @@ export class DialogEditAddressComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<DialogEditAddressComponent>,
-    private firestore: AngularFirestore) { }
+    private firestoreService: FirestoreService) { }
 
   ngOnInit(): void {
   }
 
+  /**
+* save changes in firestore database
+*/
   saveEmployee() {
     this.showProgressBar = !this.showProgressBar;
-    this
-    .firestore
-    .collection('employees')
-    .doc(this.employeeId)
-    .update(this.employee.toJSON())
-    .then(() => {
+    this.firestoreService.updateSingleEmployee(this.employeeId, this.employee)
+      .then(() => {
         this.showProgressBar = !this.showProgressBar;
         this.dialogRef.close()
       })

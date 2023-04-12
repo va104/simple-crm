@@ -4,13 +4,14 @@
     </button>
     <mat-menu #employeeMenu="matMenu">
         <button mat-menu-item (click)="editEmployee()">Edit</button>
-      </mat-menu>
+        <button mat-menu-item (click)="deleteEmployeeDialog()">Delete</button>
+    </mat-menu>
     <img [src]="employee.avatar" alt="">
     <div class="employee-details">
-       <h2>{{ employee.firstName }} {{ employee.lastName }}</h2><br>
-       {{ employee.email }}
-       <br>
-       {{ employee.phoneNumber }}
+        <h2>{{ employee.firstName }} {{ employee.lastName }}</h2><br>
+        {{ employee.email }}
+        <br>
+        {{ employee.phoneNumber }}
     </div>
 </mat-card>
 
@@ -20,7 +21,7 @@
     </button>
     <mat-menu #addressMenu="matMenu">
         <button mat-menu-item (click)="editAddress()">Edit</button>
-      </mat-menu>
+    </mat-menu>
     <mat-card-title>Address</mat-card-title>
     <mat-card-content>
         {{ employee.address.street }} <br>
