@@ -3,6 +3,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Chart } from 'chart.js';
 import { ChartService } from '../services/chart.service';
 import * as myGlobals from 'src/app/common/globals'
+import { AuthService } from '../services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,29 +12,35 @@ import * as myGlobals from 'src/app/common/globals'
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  labelsList: string[] = myGlobals.allDepartments
-  data: number[] = []
-  chartname = 'Data Charts'
-  singleChart: Chart
-  allEmployees: any
-  countDepartments: number[] = []
+  labelsList: string[] = myGlobals.allDepartments;
+  data: number[] = [];
+  chartname = 'Data Charts';
+  singleChart: Chart;
+  allEmployees: any;
+  countDepartments: number[] = [];
+  userSub: Subscription;
 
   constructor(
     private chart: ChartService,
     private firestore: AngularFirestore,
-    private elementRef: ElementRef) { }
+    private elementRef: ElementRef,
+    private authService: AuthService) { }
 
-  ngOnInit(): void {
-    this.firestore
-      .collection('employees')
-      .valueChanges()
-      .subscribe((changes: any) => {
-        this.resetArrays();
-        this.allEmployees = changes;
-        this.getAllDepartments();
-        this.countDistinctDepartments();
-        this.chartInit();
-      });
+  ngOnInit() {
+    // this.firestore
+    //   .collection('employees')
+    //   .valueChanges()
+    //   .subscribe((changes: any) => {
+    //     this.resetArrays();
+    //     this.allEmployees = changes;
+    //     this.getAllDepartments();
+    //     this.countDistinctDepartments();
+    //     this.chartInit();
+    //   });
+
+    this.userSub = this.authService.user.subscribe(user => {
+      console.log('observerB: ' + JSON.stringify(user))
+    })
   }
 
   chartInit() {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthResponseData, AuthService } from '../services/auth.service';
 
@@ -14,7 +15,7 @@ export class AuthenticationComponent implements OnInit {
   isLoading = false;
   error: string = null;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -39,8 +40,9 @@ export class AuthenticationComponent implements OnInit {
     // this works because the handling of next and error is equal for both methods
     authObs.subscribe({
       next: (resp) => {
-        console.log(resp)
-        this.isLoading = false
+        this.isLoading = false;
+        this.router.navigate(['/simpleCRM']);
+
       },
       // we subscribed to an observable and handle the errormessage in
       // the authService. So just the error is returned just in case
