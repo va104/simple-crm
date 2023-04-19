@@ -1,13 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
-html,
-body {
-    height: 100%;
+html *{
+    font-family: 'Quicksand', sans-serif !important;
 }
 
 body {
+    height: 100%;
     margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .d-flex {
@@ -18,12 +17,20 @@ body {
     justify-content: space-between;
 }
 
+.just-end {
+    justify-content: end;
+}
+
 .flex-column {
     flex-direction: column;
 }
 
 .just-center {
     justify-content: center;
+}
+
+.align-center  {
+    align-items: center;
 }
 
 .mr-16 {
@@ -48,4 +55,8 @@ body {
 
 .width-half {
     width: calc(50% - 8px);
+}
+
+.height-80 {
+    height: 80%;
 }

@@ -1,0 +1,41 @@
+.gradient {
+	background: linear-gradient(-45deg, #FCEDE2, #A84353, #363C56, #6F7692);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.form-wrapper{
+    background-color: white;
+    width: 300px;
+    height: 500px;
+
+    h1 {
+        text-align: center;
+    }
+
+    .left-login, .right-signup {
+        background: linear-gradient(180deg, #FCEDE2, #A84353);
+        width: 50%;
+    }
+    
+    .left-login {
+        border-radius: 0 50px 50px 0;
+    }
+    
+    .right-signup {
+        border-radius: 50px 0 0 50px;
+    }
+}

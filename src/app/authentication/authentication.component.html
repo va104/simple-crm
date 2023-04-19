@@ -1,16 +1,33 @@
-<form *ngIf="!isLoading" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
-    <label for="email">E-Mail</label>
-    <input type="text" id="email" ngModel name="email" required email>
-    <hr>
-    <label for="password">Password</label>
-    <input type="password" id="password" ngModel name="password" required minlength="6">
-    <hr>
-    <button type="submit" [disabled]="!authForm.valid">{{isLoginMode ? 'Login' : 'Sign Up'}}</button>
-    <hr>
-    <button type="button" (click)="onSwitchMode()">{{isLoginMode ? 'Switch to Signup' : 'Switch to Login'}}</button>
+<div class="gradient d-flex just-center align-center">
+    <div class="form-wrapper">
+        <h1>Simple CRM</h1>
+
+        <div class="d-flex just-between height-80">
+
+            <div class="left-login">
+                <h2>Login</h2>
+            </div>
+            <!-- <div class="right-signup d-flex just-end">
+                <h2>Sign up</h2>
+            </div> -->
+
+        </div>
+    </div>
+    <!-- <img src="../../assets/img/Loginscreen.jpg" alt=""> -->
+</div>
+<!-- <form *ngIf="!isLoading" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+<label for="email">E-Mail</label>
+<input type="text" id="email" ngModel name="email" required email>
+<hr>
+<label for="password">Password</label>
+<input type="password" id="password" ngModel name="password" required minlength="6">
+<hr>
+<button type="submit" [disabled]="!authForm.valid">{{isLoginMode ? 'Login' : 'Sign Up'}}</button>
+<hr>
+<button type="button" (click)="onSwitchMode()">{{isLoginMode ? 'Switch to Signup' : 'Switch to Login'}}</button>
 </form>
 <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
 
 <div *ngIf="error">
-    <p>{{error}}</p>
-</div>
+<p>{{error}}</p>
+</div> -->
