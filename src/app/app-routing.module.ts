@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './authentication/auth.guard';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmployeeDetailComponent } from './employees/employee-detail/employee-detail.component';
@@ -10,7 +11,9 @@ import { SimpleCRMComponent } from './simple-crm/simple-crm.component';
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: AuthenticationComponent},
-  {path: 'simpleCRM', component: SimpleCRMComponent, children: [
+  {path: 'simpleCRM', component: SimpleCRMComponent, 
+  canActivate: [AuthGuard],
+  children: [
     {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
     {path: 'dashboard', component: DashboardComponent},
     {path: 'employee', component: EmployeeComponent},

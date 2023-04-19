@@ -42,7 +42,6 @@ export class AuthenticationComponent implements OnInit {
       next: (resp) => {
         this.isLoading = false;
         this.router.navigate(['/simpleCRM']);
-
       },
       // we subscribed to an observable and handle the errormessage in
       // the authService. So just the error is returned just in case

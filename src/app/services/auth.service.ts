@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, tap } from 'rxjs/operators';
 import { BehaviorSubject, Subject, throwError } from 'rxjs';
 import { User } from 'src/models/user.class';
+import { Router } from '@angular/router';
 
 export interface AuthResponseData {
   kind: string,
@@ -19,9 +20,10 @@ export interface AuthResponseData {
 })
 export class AuthService {
 
-  user = new BehaviorSubject<User>(new User());
+  user = new BehaviorSubject<User | null>(null);
+  private tokenExpirationTimer: any
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   /**
 * signs up the user to firebase
@@ -64,6 +66,55 @@ export class AuthService {
         }))
   };
 
+  /**
+* logout the user --> set user to null like initial state
+* redirect to the loginpage
+*/
+  logout() {
+    this.user.next(null);
+    this.router.navigate(['/login']);
+    localStorage.removeItem('userData');
+    if (this.tokenExpirationTimer) {
+      clearTimeout(this.tokenExpirationTimer)
+    }
+    this.tokenExpirationTimer = null;
+  }
+
+  /**
+* user is logged in automatically when app starts and token 
+* of local storage is valid
+*/
+  autoLogin() {
+    const userData: {
+      email: string,
+      id: string,
+      _token: string,
+      _tokenExpirationDate: string,
+    } = JSON.parse(localStorage.getItem('userData'));
+    if (!userData) {
+      return;
+    }
+    const loadedUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpirationDate))
+    if (loadedUser.token) {
+      this.user.next(loadedUser);
+      const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
+      this.autoLogout(expirationDuration);
+    }
+  }
+
+  /**
+* user is automatically logged out when the token expires
+* @param expirationDuration amount of ms we have until the token is invalid
+*/
+  autoLogout(expirationDuration: number) {
+    this.tokenExpirationTimer = setTimeout(() => {
+      this.logout();
+    }, expirationDuration);
+  }
+
+  /**
+* is needed for the signup an the login to emit the responded userData
+*/
   private handleAuthentication(email: string, localId: string, idToken: string, expiresIn: number) {
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
     const user = new User(
@@ -73,10 +124,14 @@ export class AuthService {
       expirationDate
     );
     // emit the current user
-    this.user.next(user)
+    this.user.next(user);
+    localStorage.setItem('userData', JSON.stringify(user));
+    this.autoLogout(expiresIn * 1000)
   }
 
-
+  /**
+* error handling when making a http request
+*/
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'An unkown error occurred!';
     if (!errorRes.error || !errorRes.error.error) {

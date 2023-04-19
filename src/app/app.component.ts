@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Employee } from 'src/models/employee.class';
 import { map } from 'rxjs';
 import * as myGlobals from 'src/app/common/globals'
+import { AuthService } from './services/auth.service';
 
 
 @Component({
@@ -13,7 +14,10 @@ import * as myGlobals from 'src/app/common/globals'
 })
 export class AppComponent implements OnInit {
   allDepartments: string[] = myGlobals.allDepartments;
-  constructor(private http: HttpClient, private firestore: AngularFirestore) {
+  constructor(
+    private http: HttpClient, 
+    private firestore: AngularFirestore,
+    private authService: AuthService) {
 
   }
 
@@ -60,7 +64,9 @@ export class AppComponent implements OnInit {
           //   .then((result: any) => {
           //   })
         }
-      })
+      });
+
+      this.authService.autoLogin();
   }
 
   assignRandomDepartment() {
