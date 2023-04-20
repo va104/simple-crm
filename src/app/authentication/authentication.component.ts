@@ -20,8 +20,8 @@ export class AuthenticationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSwitchMode() {
-    this.isLoginMode = !this.isLoginMode
+  onSwitchMode(mode: string) {
+    mode == 'login' ? this.isLoginMode = true : this.isLoginMode = false;
   }
 
   onSubmit(form: NgForm) {

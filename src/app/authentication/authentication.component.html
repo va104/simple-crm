@@ -1,16 +1,16 @@
 <div class="gradient d-flex just-center align-center">
-    <div class="form-wrapper">
-        <h1>Simple CRM</h1>
-
-        <div class="d-flex just-between height-80">
-
-            <div class="left-login">
-                <h2>Login</h2>
+    <div class="form-wrapper d-flex flex-column">
+        <h1><span>Simple</span>CRM</h1>
+        <div class="d-flex just-between height-68">
+            <div [ngClass]="{'active-section': isLoginMode, 'inactive-section': !isLoginMode}" class="left-login inactive-section">
+                <h2 (click)="onSwitchMode('login')">Login</h2>
             </div>
-            <!-- <div class="right-signup d-flex just-end">
-                <h2>Sign up</h2>
-            </div> -->
-
+            <div [ngClass]="{'active-section': !isLoginMode, 'inactive-section': isLoginMode}" class="right-signup">
+                <h2 (click)="onSwitchMode('signup')">Sign up</h2>
+            </div>
+        </div>
+        <div *ngIf="isLoginMode" class="subtitle d-flex just-center align-center">
+            Don`t have an account?&nbsp;<span (click)="onSwitchMode('signup')">SIGN UP</span>
         </div>
     </div>
     <!-- <img src="../../assets/img/Loginscreen.jpg" alt=""> -->
