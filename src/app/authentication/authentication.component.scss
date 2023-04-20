@@ -35,6 +35,7 @@ $base-color: #A84353;
     h2 {
         color: white;
         cursor: pointer;
+        display: inline-block;
     }
 
     .left-login,
@@ -56,7 +57,7 @@ $base-color: #A84353;
 
     .inactive-section {
         h2 {
-            color: #0000006b;
+            color: #bbb8b8;
         }
     }
 
@@ -73,7 +74,8 @@ $base-color: #A84353;
 
         h2 {
             margin: 32px 16px 0 0;
-            text-align: right;
+            width: fit-content;
+            align-self: end;
         }
     }
 

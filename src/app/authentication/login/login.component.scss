@@ -1,0 +1,58 @@
+.dialog{
+    position:absolute;
+    width:85%;
+    border-radius:5px; 
+    left: 0; 
+    right: 0; 
+    margin: 0 auto;
+    top: 38%;
+    background-color: white;
+    box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .top-bot{
+    position:absolute;
+    top:-40px;
+    right:70%;
+    width:0;
+    height:0;
+    border-width:20px;
+    border-style:solid;
+    border-color:transparent transparent #fff transparent;  
+  }
+
+  form {
+      &.dialog-content{
+        text-align:center;
+        padding: 32px;
+        width: 100%;
+      }
+
+      input {
+        width: 100%;
+        margin-bottom: 16px;
+        padding: 8px;
+        border: none;
+        border-bottom: 1px solid #bbb8b8;
+        outline: none;
+      }
+
+      input[type=email] {
+        background-image: url('../../../assets/img/mail.png');
+        background-position: 98%;
+        background-repeat: no-repeat;   
+        background-size: 25px;    
+      }
+      
+      input[type=password] {
+        background-image: url('../../../assets/img/key.png');
+        background-position: 98%;
+        background-repeat: no-repeat;
+        background-size: 25px;    
+      }
+
+      button {
+
+      }
+  }
+ 

@@ -1,19 +1,20 @@
 <div class="gradient d-flex just-center align-center">
-    <div class="form-wrapper d-flex flex-column">
+    <div class="form-wrapper d-flex flex-column pos-rel">
         <h1><span>Simple</span>CRM</h1>
         <div class="d-flex just-between height-68">
             <div [ngClass]="{'active-section': isLoginMode, 'inactive-section': !isLoginMode}" class="left-login inactive-section">
                 <h2 (click)="onSwitchMode('login')">Login</h2>
             </div>
-            <div [ngClass]="{'active-section': !isLoginMode, 'inactive-section': isLoginMode}" class="right-signup">
+            <div [ngClass]="{'active-section': !isLoginMode, 'inactive-section': isLoginMode}" class="right-signup d-flex flex-column">
                 <h2 (click)="onSwitchMode('signup')">Sign up</h2>
             </div>
         </div>
         <div *ngIf="isLoginMode" class="subtitle d-flex just-center align-center">
             Don`t have an account?&nbsp;<span (click)="onSwitchMode('signup')">SIGN UP</span>
         </div>
+        <app-login *ngIf="isLoginMode" [isLoginMode]="isLoginMode"></app-login>
+        <app-signup *ngIf="!isLoginMode"></app-signup>
     </div>
-    <!-- <img src="../../assets/img/Loginscreen.jpg" alt=""> -->
 </div>
 <!-- <form *ngIf="!isLoading" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
 <label for="email">E-Mail</label>
