@@ -12,23 +12,6 @@
         <div *ngIf="isLoginMode" class="subtitle d-flex just-center align-center">
             Don`t have an account?&nbsp;<span (click)="onSwitchMode('signup')">SIGN UP</span>
         </div>
-        <app-login *ngIf="isLoginMode" [isLoginMode]="isLoginMode"></app-login>
-        <app-signup *ngIf="!isLoginMode"></app-signup>
+        <app-login [isLoginMode]="isLoginMode"></app-login>
     </div>
 </div>
-<!-- <form *ngIf="!isLoading" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
-<label for="email">E-Mail</label>
-<input type="text" id="email" ngModel name="email" required email>
-<hr>
-<label for="password">Password</label>
-<input type="password" id="password" ngModel name="password" required minlength="6">
-<hr>
-<button type="submit" [disabled]="!authForm.valid">{{isLoginMode ? 'Login' : 'Sign Up'}}</button>
-<hr>
-<button type="button" (click)="onSwitchMode()">{{isLoginMode ? 'Switch to Signup' : 'Switch to Login'}}</button>
-</form>
-<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-
-<div *ngIf="error">
-<p>{{error}}</p>
-</div> -->
