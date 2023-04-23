@@ -1,8 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AuthResponseData, AuthService } from '../services/auth.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'app-authentication',
@@ -12,44 +9,20 @@ import { AuthResponseData, AuthService } from '../services/auth.service';
 export class AuthenticationComponent implements OnInit {
 
   isLoginMode = true;
-  isLoading = false;
-  error: string = null;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  @ViewChild(LoginComponent) loginForm!: LoginComponent;
+
+  constructor() { }
 
   ngOnInit(): void {
   }
 
+/**
+ * After changing the view between login and signup the form has to be reset an error messages can be deleted
+ */
   onSwitchMode(mode: string) {
     mode == 'login' ? this.isLoginMode = true : this.isLoginMode = false;
-  }
-
-  onSubmit(form: NgForm) {
-    if (!form.valid) {
-      return;
-    }
-    const email = form.value.email;
-    const password = form.value.password;
-    this.isLoading = true;
-
-    // change the observable this variable holds
-    // after the if check one of the observables will be stored here
-    // at the end we can subscribe on this observable which holds the correct response
-    const authObs: Observable<AuthResponseData> = this.isLoginMode ? this.authService.login(email, password) : this.authService.signup(email, password)
-
-    // this works because the handling of next and error is equal for both methods
-    authObs.subscribe({
-      next: (resp) => {
-        this.isLoading = false;
-        this.router.navigate(['/simpleCRM']);
-      },
-      // we subscribed to an observable and handle the errormessage in
-      // the authService. So just the error is returned just in case
-      error: (errorMessage) => {
-        this.error = errorMessage
-        this.isLoading = false;
-      }
-    })
-    form.reset()
+    this.loginForm.resetForm();
+    this.loginForm.error = '';
   }
 }

@@ -1,9 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
 html *{
-    font-family: 'Quicksand', sans-serif !important;
     box-sizing: border-box;
 }
+
+*:not(mat-icon){
+     font-family: 'Quicksand', sans-serif !important;
+ }
 
 body {
     height: 100%;

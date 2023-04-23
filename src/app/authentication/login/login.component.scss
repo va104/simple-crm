@@ -32,7 +32,6 @@ $base-color: #A84353;
 
 form {
   &.dialog-content {
-    text-align: center;
     padding: 32px;
     width: 100%;
   }
@@ -68,6 +67,7 @@ form {
     border: 2px solid currentColor;
     cursor: pointer;
     border-radius: 1rem;
+    width: fit-content;
     color: $base-color;
     font-size: 1rem;
     font-weight: 500;
@@ -95,15 +95,43 @@ form {
 
     }
 
-    &:hover::after {
+    &.validForm:hover::after {
       transform: translate(0, 0);
     }
 
-    &:hover {
+    &.validForm:hover {
       border: 2px solid transparent;
       color: white;
       transform: scale(1.05);
       will-change: transform;
     }
+  }
+
+  .warning-message {
+    top: -10px;
+    color: #d70606;
+    font-weight: 500;
+    display: inline-block;
+    width: 100%;
+
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      background: #d70606;
+      height: 2px;
+      top: -7px;
+      animation: warningforwards .2s ease forwards;
+    }
+  }
+}
+
+@keyframes warningforwards {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
   }
 }
