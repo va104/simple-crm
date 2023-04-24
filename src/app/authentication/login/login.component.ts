@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -12,8 +12,10 @@ import { AuthResponseData, AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit {
   isLoading = false;
   error: string = null;
+  email: string = '';
 
   @Input() isLoginMode: boolean;
+  @Output() isSignedUp = new EventEmitter<string>();
   @ViewChild('loginForm') loginForm: NgForm;
 
   constructor(private authService: AuthService, private router: Router) { }
@@ -26,6 +28,8 @@ export class LoginComponent implements OnInit {
   }
   
   onSubmit(form: NgForm) {
+    console.log(form);
+    
     if (!form.valid) {
       return;
     }
@@ -41,8 +45,14 @@ export class LoginComponent implements OnInit {
     // this works because the handling of next and error is equal for both methods
     authObs.subscribe({
       next: (resp) => {
+        if (!this.isLoginMode) {
+          this.isLoginMode = true;
+          this.email = email;
+          this.isSignedUp.emit();
+        } else {
+          this.router.navigate(['/simpleCRM']);
+        }
         this.isLoading = false;
-        this.router.navigate(['/simpleCRM']);
       },
       // we subscribed to an observable and handle the errormessage in
       // the authService. So just the error is returned just in case

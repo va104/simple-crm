@@ -124,6 +124,17 @@ form {
       animation: warningforwards .2s ease forwards;
     }
   }
+
+  .error-message {
+    margin-top: 12px;
+    text-align: center;
+    background-color: $base-color;
+    padding: 12px;
+    color: white;
+    font-weight: 500;
+    border: 2px solid #363C56;
+  }
+
 }
 
 @keyframes warningforwards {

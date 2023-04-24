@@ -12,6 +12,6 @@
         <div *ngIf="isLoginMode" class="subtitle d-flex just-center align-center">
             Don`t have an account?&nbsp;<span (click)="onSwitchMode('signup')">SIGN UP</span>
         </div>
-        <app-login [isLoginMode]="isLoginMode"></app-login>
+        <app-login (isSignedUp)="isSignedUp()" [isLoginMode]="isLoginMode"></app-login>
     </div>
 </div>

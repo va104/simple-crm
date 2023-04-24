@@ -25,4 +25,9 @@ export class AuthenticationComponent implements OnInit {
     this.loginForm.resetForm();
     this.loginForm.error = '';
   }
+
+  isSignedUp() {
+    this.isLoginMode = true;
+    this.loginForm.error = '';
+  }
 }

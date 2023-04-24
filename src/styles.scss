@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+$base-color: #A84353;
 
 html *{
     box-sizing: border-box;
@@ -63,4 +64,12 @@ body {
 
 .height-68 {
     height: 68%;
+}
+
+mat-progress-bar .mat-progress-bar-buffer {
+    background: #E4E8EB;
+  }
+
+  mat-progress-bar  .mat-progress-bar-fill::after {
+    background: linear-gradient(180deg, $base-color 0%, #363C56 84%);;
 }

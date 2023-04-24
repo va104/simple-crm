@@ -6,7 +6,7 @@
            <span *ngIf="!inputUsername.valid && inputUsername.touched" class="pos-rel warning-message">The username field is required</span>
         </div>
         <div class="pos-rel full-width">
-            <input #inputEmail="ngModel" type="email" id="email" name="email" placeholder="E-Mail" ngModel required email>
+            <input #inputEmail="ngModel" type="email" id="email" name="email" placeholder="E-Mail"  [(ngModel)]="email" required email>
             <span *ngIf="!inputEmail.valid && inputEmail.touched" class="pos-rel warning-message">The email field is required</span>
         </div>
         <div class="pos-rel full-width">
@@ -14,10 +14,9 @@
             <span *ngIf="!inputPassword.valid && inputPassword.touched" class="pos-rel warning-message">The password field is required</span>
         </div>
         <button type="submit" [disabled]="!loginForm.valid" class="coolBeans" [ngClass]="{validForm: loginForm.valid}">{{isLoginMode ? 'Login' : 'Sign up'}}</button>
+        <div *ngIf="error" class="error-message">
+            {{error}}
+        </div>
     </form>
-    <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-
-    <div *ngIf="error">
-        <p>{{error}}</p>
-    </div>
+    <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
 </div>
