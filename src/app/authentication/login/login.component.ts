@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   email: string = '';
 
   @Input() isLoginMode: boolean;
+  @Input() signedUp: boolean;
   @Output() isSignedUp = new EventEmitter<string>();
   @ViewChild('loginForm') loginForm: NgForm;
 
@@ -36,6 +37,8 @@ export class LoginComponent implements OnInit {
     const email = form.value.email;
     const password = form.value.password;
     this.isLoading = true;
+    console.log(this.email);
+    
 
     // change the observable this variable holds
     // after the if check one of the observables will be stored here
@@ -46,8 +49,8 @@ export class LoginComponent implements OnInit {
     authObs.subscribe({
       next: (resp) => {
         if (!this.isLoginMode) {
-          this.isLoginMode = true;
           this.email = email;
+          this.signedUp = true;
           this.isSignedUp.emit();
         } else {
           this.router.navigate(['/simpleCRM']);

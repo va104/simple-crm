@@ -132,9 +132,17 @@ form {
     padding: 12px;
     color: white;
     font-weight: 500;
-    border: 2px solid #363C56;
+    border: 1px solid #363C56;
   }
 
+  .signed-up {
+    margin: 12px 0;
+    text-align: center;
+    background-color: #363C56;
+    padding: 12px;
+    color: white;
+    font-weight: 500;
+  }
 }
 
 @keyframes warningforwards {

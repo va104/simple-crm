@@ -1,6 +1,9 @@
 <div class="dialog d-flex flex-column just-center">
     <span [ngClass]="{'login': isLoginMode, 'sign-up': !isLoginMode}" class="top-bot"></span>
     <form class="dialog-content d-flex flex-column align-center" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+        <div *ngIf="isLoginMode && signedUp" class="signed-up">
+            Successfully signed up! Please fill in your password for login.
+        </div>
        <div *ngIf="!isLoginMode" class="pos-rel full-width">
            <input #inputUsername="ngModel" type="text" id="username" name="username" placeholder="Username" ngModel required>
            <span *ngIf="!inputUsername.valid && inputUsername.touched" class="pos-rel warning-message">The username field is required</span>

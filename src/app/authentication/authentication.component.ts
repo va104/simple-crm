@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 export class AuthenticationComponent implements OnInit {
 
   isLoginMode = true;
+  signedUp = false;
 
   @ViewChild(LoginComponent) loginForm!: LoginComponent;
 
@@ -24,10 +25,12 @@ export class AuthenticationComponent implements OnInit {
     mode == 'login' ? this.isLoginMode = true : this.isLoginMode = false;
     this.loginForm.resetForm();
     this.loginForm.error = '';
+    this.signedUp = false;
   }
 
   isSignedUp() {
     this.isLoginMode = true;
+    this.signedUp = true;
     this.loginForm.error = '';
   }
 }
