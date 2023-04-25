@@ -28,18 +28,20 @@ export class LoginComponent implements OnInit {
     this.loginForm.resetForm();
   }
   
-  onSubmit(form: NgForm) {
-    console.log(form);
-    
-    if (!form.valid) {
-      return;
+  // onSubmit(form: NgForm, event : MouseEvent) {
+    onSubmit(form: NgForm, event : MouseEvent) {
+    let email = '';
+    let password = '';
+    if(event) {
+      email = 'guestuser@gmal.de';
+      password = '123456'
+    } else {
+      email = form.value.email;
+      password = form.value.password;
     }
-    const email = form.value.email;
-    const password = form.value.password;
-    this.isLoading = true;
-    console.log(this.email);
     
-
+    this.isLoading = true;
+    
     // change the observable this variable holds
     // after the if check one of the observables will be stored here
     // at the end we can subscribe on this observable which holds the correct response

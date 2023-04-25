@@ -1,25 +1,36 @@
 <mat-drawer-container class="mat-drawer-container" autosize>
-    <mat-drawer #drawer class="sidenav" [opened]="true" mode="side">
-      <div class="logo-container">
-        Platz für Logo
-      </div>
-      <ul>
-        <li [routerLink]="['dashboard']"><mat-icon>dashboard</mat-icon>Dashboard</li>
-        <li [routerLink]="['employee']"><mat-icon>people</mat-icon>Employees</li>
-      </ul>
-    </mat-drawer>
-    <div class="example-sidenav-content">
-      <mat-toolbar color="primary">
-        <mat-toolbar-row>
-          <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
+  <mat-drawer #drawer class="sidenav" [opened]="true" mode="side">
+    <div class="logo-container">
+      <img src="../../assets/img/logoSimpleCRM.jpg" alt="LogoSimpleCRM">
+    </div>
+    <ul>
+      <li [routerLink]="['dashboard']" [routerLinkActive]="['test']">
+        <mat-icon>dashboard</mat-icon>Dashboard
+      </li>
+      <li [routerLink]="['employee']" [routerLinkActive]="['test']">
+        <mat-icon>people</mat-icon>Employees
+      </li>
+    </ul>
+  </mat-drawer>
+  <div class="example-sidenav-content">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row class="header-row just-between">
+        <div class="d-flex align-center">
+          <button mat-icon-button (click)="drawer.toggle()">
             <mat-icon>menu</mat-icon>
           </button>
-          <span>Simple CRM</span>
-          <button (click)="onLogout()" >Logout</button>
-        </mat-toolbar-row>
-      </mat-toolbar>
-    </div>
-    <div class="router-container">
-      <router-outlet></router-outlet>
-    </div>
-  </mat-drawer-container>
+          <div class="logotext">
+            <span>Simple</span>
+            <span>CRM</span>
+          </div>
+        </div>
+        <button mat-icon-button (click)="onLogout()">
+          <mat-icon>logout</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+  <div class="router-container">
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>

@@ -9,10 +9,30 @@
 .logo-container {
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     padding: 16px;
-    min-height: 32px;
-    height: 32px;
     display: flex;
     align-items: center;
+    justify-content: center;
+
+    img {
+        height: 150px;
+    }
+}
+
+.logotext {
+    span {
+        font-size: 1.5rem;
+
+        &:first-child {
+            font-size: 1.8rem;
+            color: var(--base-color-light-purple);
+            font-weight: 700;
+        }
+    }
+
+}
+
+.header-row {
+    background: linear-gradient(-93deg, var(--base-color-dark-blue), var(--base-color-dark-purple)) !important;
 }
 
 ul {
@@ -26,17 +46,30 @@ ul {
         display: flex;
         align-items: center;
         cursor: pointer;
+        font-size: 1.2rem;
+        font-weight: 400;
+        transition: all 0.5s ease-in-out;
 
         mat-icon {
             margin-right: 16px;
         }
 
-        &:hover {
+        &.test {
+            background-color: var(--base-color-dark-blue);
+            transition: all 0.5s ease-in-out;
+            color: white;
+        }
+
+        &:not(.test):hover {
             background-color: rgba(0, 0, 0, 0.08);
+            transition: all 0.2s ease-in-out;
         }
     }
 }
 
 .router-container {
     padding: 16px 56px 56px 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

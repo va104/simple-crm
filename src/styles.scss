@@ -1,13 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
-$base-color: #A84353;
 
-html *{
+
+:root {
+    --base-color-light-blue: #4AACFC;
+    --base-color-dark-blue: #252A71;
+    --base-color-light-purple: #EC487C;
+    --base-color-dark-purple: #5B236D;
+}
+
+html * {
     box-sizing: border-box;
 }
 
-*:not(mat-icon){
-     font-family: 'Quicksand', sans-serif !important;
- }
+*:not(mat-icon) {
+    font-family: 'Quicksand', sans-serif !important;
+}
 
 body {
     height: 100%;
@@ -34,7 +41,7 @@ body {
     justify-content: center;
 }
 
-.align-center  {
+.align-center {
     align-items: center;
 }
 
@@ -66,10 +73,21 @@ body {
     height: 68%;
 }
 
+.container-wrapper{
+    width: clamp(200px, 100%, 1000px);
+}
+
 mat-progress-bar .mat-progress-bar-buffer {
     background: #E4E8EB;
-  }
+}
 
-  mat-progress-bar  .mat-progress-bar-fill::after {
-    background: linear-gradient(180deg, $base-color 0%, #363C56 84%);;
+mat-progress-bar .mat-progress-bar-fill::after {
+    background: linear-gradient(180deg, var(--base-color-light-purple) 0%, var(--base-color-dark-blue) 84%);
+    ;
+}
+
+app-employee-detail {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }

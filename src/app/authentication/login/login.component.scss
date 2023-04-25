@@ -1,5 +1,3 @@
-$base-color: #A84353;
-
 .dialog {
   position: absolute;
   width: 85%;
@@ -7,7 +5,7 @@ $base-color: #A84353;
   left: 0;
   right: 0;
   margin: 0 auto;
-  top: 38%;
+  top: 33%;
   background-color: white;
   box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.2);
 }
@@ -65,22 +63,37 @@ form {
 
   .coolBeans {
     border: 2px solid currentColor;
-    cursor: pointer;
-    border-radius: 1rem;
+    cursor: not-allowed;
+    border-radius: 0.5rem;
+    background: transparent;
     width: fit-content;
-    color: $base-color;
+    color: var(--base-color-light-purple);
     font-size: 1rem;
     font-weight: 500;
     overflow: hidden;
-    padding: 0.7rem 2rem;
+    padding: 0.5rem 2rem;
     text-decoration: none;
-    transition: .2s transform ease-in-out;
+    // transition: .2s transform ease-in-out;
+    transition: all 0.2s ease-in-out;
     will-change: transform;
+
+    &.guest-login {
+      color: var(--base-color-dark-blue);
+      border: 2px solid var(--base-color-dark-blue);
+      cursor: pointer !important;
+
+      &:hover {
+        background-color: #252a71b8;
+        color: white;
+        border: 2px solid transparent;
+        transition: all 0.2s ease-in-out;
+      }
+    }
 
     &::after {
       content: '';
-      background: linear-gradient(180deg, $base-color 0%, #363C56 84%);
-      border-radius: 1rem;
+      background: linear-gradient(180deg, var(--base-color-light-purple) 0%, var(--base-color-dark-blue) 84%);
+      border-radius: 0.5rem;
       display: block;
       height: 100%;
       width: 100%;
@@ -92,7 +105,6 @@ form {
       transition: .2s transform ease-out;
       will-change: transform;
       z-index: -1;
-
     }
 
     &.validForm:hover::after {
@@ -104,6 +116,7 @@ form {
       color: white;
       transform: scale(1.05);
       will-change: transform;
+      cursor: pointer;
     }
   }
 
@@ -128,20 +141,47 @@ form {
   .error-message {
     margin-top: 12px;
     text-align: center;
-    background-color: $base-color;
+    background-color: var(--base-color-light-purple);
     padding: 12px;
     color: white;
     font-weight: 500;
-    border: 1px solid #363C56;
+    border: 1px solid var(--base-color-dark-blue);
   }
 
   .signed-up {
     margin: 12px 0;
     text-align: center;
-    background-color: #363C56;
+    background-color: var(--base-color-dark-blue);
     padding: 12px;
     color: white;
     font-weight: 500;
+  }
+
+  .divider {
+    height: 40px;
+    line-height: 40px;
+
+    &:before,
+    &:after {
+      content: "";
+      display: inline-block;
+      vertical-align: middle;
+      height: 1px;
+      width: 80px;
+      line-height: normal;      
+    }
+
+    &:before {
+      background: -webkit-gradient(linear, 0 0, 100% 0, from(#fff), to(var(--base-color-dark-blue)), color-stop(50%, #363C56));      
+    }
+
+    &:after {
+      background: -webkit-gradient(linear, 0 0, 100% 0, from(var(--base-color-dark-blue)), to(#fff), color-stop(50%, #363C56));      
+    }
+
+    span {
+      padding: 0 12px;
+    }
   }
 }
 

@@ -1,6 +1,6 @@
 <div class="dialog d-flex flex-column just-center">
     <span [ngClass]="{'login': isLoginMode, 'sign-up': !isLoginMode}" class="top-bot"></span>
-    <form class="dialog-content d-flex flex-column align-center" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+    <form class="dialog-content d-flex flex-column align-center" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm, $event.submitter.id)">
         <div *ngIf="isLoginMode && signedUp" class="signed-up">
             Successfully signed up! Please fill in your password for login.
         </div>
@@ -17,6 +17,10 @@
             <span *ngIf="!inputPassword.valid && inputPassword.touched" class="pos-rel warning-message">The password field is required</span>
         </div>
         <button type="submit" [disabled]="!loginForm.valid" class="coolBeans" [ngClass]="{validForm: loginForm.valid}">{{isLoginMode ? 'Login' : 'Sign up'}}</button>
+        <div *ngIf="isLoginMode" class="divider">
+           <span>or</span> 
+        </div>
+        <button id="btn2" type="submit" *ngIf="isLoginMode" class="coolBeans guest-login">Login as Guest</button>
         <div *ngIf="error" class="error-message">
             {{error}}
         </div>

@@ -1,30 +1,32 @@
-<mat-card class="employee-detail-header">
-    <button [matMenuTriggerFor]="employeeMenu" mat-icon-button class="pin-right-upper-corner">
-        <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #employeeMenu="matMenu">
-        <button mat-menu-item (click)="editEmployee()">Edit</button>
-        <button mat-menu-item (click)="deleteEmployeeDialog()">Delete</button>
-    </mat-menu>
-    <img [src]="employee.avatar" alt="">
-    <div class="employee-details">
-        <h2>{{ employee.firstName }} {{ employee.lastName }}</h2><br>
-        {{ employee.email }}
-        <br>
-        {{ employee.phoneNumber }}
-    </div>
-</mat-card>
+<div class="container-wrapper">
+    <div class="card">
+        <button [matMenuTriggerFor]="employeeMenu" mat-icon-button class="pin-right-upper-corner">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #employeeMenu="matMenu">
+            <button mat-menu-item (click)="editEmployee()">Edit</button>
+            <button mat-menu-item (click)="deleteEmployeeDialog()">Delete</button>
+        </mat-menu>
+        <img [src]="employee.avatar" alt="">
+        <div class="employee-details">
+            <h2>{{ employee.firstName }} {{ employee.lastName }}</h2><br>
+            {{ employee.email }}
+            <br>
+            {{ employee.phoneNumber }}
+        </div>
 
-<mat-card class="mt-32">
-    <button [matMenuTriggerFor]="addressMenu" mat-icon-button class="pin-right-upper-corner">
-        <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #addressMenu="matMenu">
-        <button mat-menu-item (click)="editAddress()">Edit</button>
-    </mat-menu>
-    <mat-card-title>Address</mat-card-title>
-    <mat-card-content>
-        {{ employee.address.street }} <br>
-        {{ employee.address.zipCode }} {{ employee.address.city }}
-    </mat-card-content>
-</mat-card>
+    </div>
+    <mat-card class="mt-32">
+        <button [matMenuTriggerFor]="addressMenu" mat-icon-button class="pin-right-upper-corner">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #addressMenu="matMenu">
+            <button mat-menu-item (click)="editAddress()">Edit</button>
+        </mat-menu>
+        <mat-card-title>Address</mat-card-title>
+        <mat-card-content>
+            {{ employee.address.street }} <br>
+            {{ employee.address.zipCode }} {{ employee.address.city }}
+        </mat-card-content>
+    </mat-card>
+</div>

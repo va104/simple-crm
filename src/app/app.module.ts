@@ -42,6 +42,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { SimpleCRMComponent } from './simple-crm/simple-crm.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { LoginComponent } from './authentication/login/login.component';
+import { CountUpDirective } from './directives/count-up.directive';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { LoginComponent } from './authentication/login/login.component';
     PageNotFoundComponent,
     SimpleCRMComponent,
     LoadingSpinnerComponent,
-    LoginComponent
+    LoginComponent,
+    CountUpDirective
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
