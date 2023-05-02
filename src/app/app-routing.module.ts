@@ -20,7 +20,7 @@ const routes: Routes = [
     {path: 'employee/:employeeId', component: EmployeeDetailComponent},
     {path: 'not-found', component: PageNotFoundComponent},
   ]},
-  {path: '**', redirectTo: 'simpleCRM/not-found'},
+  // {path: '**', redirectTo: 'simpleCRM/not-found'},
 ];
 
 @NgModule({

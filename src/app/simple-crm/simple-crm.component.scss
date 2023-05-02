@@ -54,13 +54,13 @@ ul {
             margin-right: 16px;
         }
 
-        &.test {
+        &.active {
             background-color: var(--base-color-dark-blue);
             transition: all 0.5s ease-in-out;
             color: white;
         }
 
-        &:not(.test):hover {
+        &:not(.active):hover {
             background-color: rgba(0, 0, 0, 0.08);
             transition: all 0.2s ease-in-out;
         }

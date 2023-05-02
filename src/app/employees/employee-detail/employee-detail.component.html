@@ -1,4 +1,8 @@
 <div class="container-wrapper">
+    <div class="backToEmployees d-flex align-center">
+        <mat-icon [routerLink]="['..']">keyboard_backspace</mat-icon>
+        <div [routerLink]="['..']">Back</div>
+    </div>
     <div class="card">
         <button [matMenuTriggerFor]="employeeMenu" mat-icon-button class="pin-right-upper-corner">
             <mat-icon>more_vert</mat-icon>

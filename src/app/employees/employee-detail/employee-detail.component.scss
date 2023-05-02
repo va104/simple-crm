@@ -1,3 +1,17 @@
+.backToEmployees {
+    margin-bottom: 8px;
+    
+    mat-icon {
+        color: var(--side-color-light-grey);
+        margin-right: 8px;
+        cursor: pointer;
+    }
+    
+    div {
+        cursor: pointer;
+    }
+}
+
 .employee-detail-header{
     min-height: 250px;
     background-color: #ff5b27;
